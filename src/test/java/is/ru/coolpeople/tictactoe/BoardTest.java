@@ -11,6 +11,30 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class BoardTest {
 	@Test
+	public void placeSymbol() throws Exception {
+		//initialize new board
+		Board board = new Board();
+
+		//place an arbitrary symbol correctly
+		board.placeSymbol("X", 0);
+
+		//check that correctly placed symbol got where it was headed
+		assertTrue("X".equals(board.grid[0]));
+
+		//place symbol incorrectly
+		boolean caughtException = false;
+
+		try {
+			board.placeSymbol("X", 123);
+		} catch (IllegalArgumentException e) {
+			caughtException = true;
+		}
+
+		//IllegalArgumentException should be thrown since this is out of bounds
+		assert(caughtException);
+	}
+
+	@Test
 	public void getGrid() throws Exception {
 		Board board = new Board();
 		String[] grid = board.getGrid();

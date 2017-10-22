@@ -16,12 +16,15 @@ public class Board {
 		return grid;
 	}
 
-	void placeSymbol(String symbol) {
-		//todo: implement
+	void placeSymbol(String symbol, int index) {
+		if (index >= 9 || index < 0) {
+			throw new IllegalArgumentException("Index not between 0 and 9");
+		}
+		grid[index] = symbol;
 	}
 
-	char getSymbolAtIndex(int index) {
+	String getSymbolAtIndex(int index) {
 		//todo: implement
-		return ' ';
+		return "";
 	}
 }
