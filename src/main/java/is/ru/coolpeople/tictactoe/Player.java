@@ -5,5 +5,25 @@ package is.ru.coolpeople.tictactoe;
  */
 
 public class Player {
-	//todo: implement player functionality
+	
+	private String playerSymbol = "SymbolMissing";
+	//playerName will maybe not be used
+	private String playerName;
+
+	//function can only get inputs that are deemed acceptible
+	public Player(String symbol) {
+
+		playerSymbol = symbol;
+	}
+
+	public String getSymbol() {
+
+		return playerSymbol;
+	}
+
+	public String getName() {
+		
+		return playerName;
+	}
+
 }
