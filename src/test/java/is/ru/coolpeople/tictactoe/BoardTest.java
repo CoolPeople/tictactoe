@@ -10,6 +10,13 @@ import static org.junit.Assert.*;
 
 @SpringBootTest
 public class BoardTest {
+	@Test
+	public void getGrid() throws Exception {
+		Board board = new Board();
+		String[] grid = board.getGrid();
+
+		assertFalse(grid == null);
+	}
 
 	@Test
 	public void testBoard() {

@@ -13,8 +13,7 @@ public class Board {
 	}
 
 	String[] getGrid() {
-		//todo: implement
-		return null;
+		return grid;
 	}
 
 	void placeSymbol(String symbol) {
