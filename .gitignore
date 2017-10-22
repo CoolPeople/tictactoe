@@ -1,6 +1,5 @@
 Q.gradle
 /build/
-<<<<<<< HEAD
 !gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
@@ -37,4 +36,3 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
->>>>>>> 05bb36693989f8b43c1ad02b40619ee3817efcf1
