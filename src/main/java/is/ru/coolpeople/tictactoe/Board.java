@@ -5,4 +5,24 @@ package is.ru.coolpeople.tictactoe;
  */
 public class Board {
 	//todo: implement board model
+	//
+	String[] grid;
+
+	Board() {
+		grid = new String[9];
+	}
+
+	String[] getGrid() {
+		//todo: implement
+		return null;
+	}
+
+	void placeSymbol(String symbol) {
+		//todo: implement
+	}
+
+	char getSymbolAtIndex(int index) {
+		//todo: implement
+		return ' ';
+	}
 }
