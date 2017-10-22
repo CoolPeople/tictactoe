@@ -35,6 +35,27 @@ public class BoardTest {
 	}
 
 	@Test
+	public void getSymbolAtIndex() throws Exception {
+		//initialize new board
+		Board board = new Board();
+		board.placeSymbol("X", 4);
+
+		String symbol = board.getSymbolAtIndex(4);
+
+		//check that we get the expected symbol
+		assertEquals("X", symbol);
+
+		boolean caughtException = false;
+		try {
+			board.getSymbolAtIndex(10);
+		} catch (IllegalArgumentException e) {
+			caughtException = true;
+		}
+
+		assertTrue(caughtException);
+	}
+
+	@Test
 	public void getGrid() throws Exception {
 		Board board = new Board();
 		String[] grid = board.getGrid();

@@ -24,7 +24,9 @@ public class Board {
 	}
 
 	String getSymbolAtIndex(int index) {
-		//todo: implement
-		return "";
+		if (index >= 9 || index < 0) {
+			throw new IllegalArgumentException("Index not between 0 and 9");
+		}
+		return grid[index];
 	}
 }
