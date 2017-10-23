@@ -9,6 +9,22 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class GameTest {
-	//todo: implement tests
+    
+    @Test
+    public void testMakesGame ()
+    {
+        Game g = new Game();
+        assertFalse(g == null);
+    }
+    
+    @Test
+    public void testCurrentPlayerName ()
+    {
+        Player
+        Game g = new Game();
+        assertFalse(g == null);
+    }
+	
+    
 
 }

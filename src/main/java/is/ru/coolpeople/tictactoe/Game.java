@@ -6,5 +6,13 @@ package is.ru.coolpeople.tictactoe;
 
 public class Game {
 	//Todo: Implement game class
+    private Board board;
+    
+    
+    public Game () {
+        board = new Board();
+    }
+    
 
+    
 }
