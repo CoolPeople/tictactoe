@@ -25,9 +25,9 @@ public class PlayerTest {
 		assertEquals("X", p.getSymbol());
 	}
     
-    @Test
-    public void symbolTest2() {
-        Player p = new Player("Frikki","X");
-        assertEquals("Frikki", p.getName());
-    }
+    	@Test
+    	public void nameTest1() {
+        	Player p = new Player("Frikki","X");
+        	assertEquals("Frikki", p.getName());
+    	}
 }
