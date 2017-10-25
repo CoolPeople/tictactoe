@@ -46,6 +46,17 @@ public class Game {
     				}
 			}
     		}
+    		
+    		for ( int i = 0; i < 3; i++)
+    		{
+    			if ( board.getSymbolAtIndex(i) != null )
+    			{
+    				if( board.getSymbolAtIndex(i) == board.getSymbolAtIndex(i+3) && board.getSymbolAtIndex(i) == board.getSymbolAtIndex(i+6))
+    				{
+    					return true;
+    				}
+			}
+    		}
 
     		return false;
     }
