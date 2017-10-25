@@ -64,6 +64,11 @@ public class Game {
 			{
 				return true;
 			}
+			
+			if( board.getSymbolAtIndex(6) == board.getSymbolAtIndex(4) && board.getSymbolAtIndex(4) == board.getSymbolAtIndex(2))
+			{
+				return true;
+			}
 		}
 
     		return false;
