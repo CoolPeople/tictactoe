@@ -106,6 +106,21 @@ public class GameTest {
         	assertFalse(g2.isGameOver());
         	g2.doTurn(4); //Hafsteinn
         	assertTrue( g2.isGameOver() ); 	
+        	
+    		//Test that if the middle vertical line is the same symbol, game is over	
+    		Game g3 = new Game(players);
+        g3.doTurn(1); //Anna
+        	assertFalse(g3.isGameOver());
+        	g3.doTurn(6); //Hafsteinn
+        	assertFalse(g3.isGameOver());
+        	g3.doTurn(0); //Anna
+        	assertFalse(g3.isGameOver());
+        	g3.doTurn(7); //Hafsteinn
+        	assertFalse(g3.isGameOver());
+        	g3.doTurn(5); //Anna
+        	assertFalse(g3.isGameOver());
+        	g3.doTurn(8); //Hafsteinn
+        	assertTrue( g3.isGameOver() ); 
     	
     }
     
