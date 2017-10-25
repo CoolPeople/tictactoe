@@ -70,5 +70,29 @@ public class GameTest {
         assertTrue(grid[2] == "X");
     }
     
+    @Test
+    public void testIsGameOver() 
+    {
+        Player p1 = new Player ("Anna", "X");
+        Player p2 = new Player ("Hafsteinn", "O");
+        Queue<Player> players = new ArrayBlockingQueue<Player>(2);
+        players.add(p1);
+        players.add(p2);
+        
+        //Test that if the top vertical line is all the same symbol, game is over. 
+        Game g = new Game(players);
+    		g.doTurn(0); //Anna
+    		assertFalse(g.isGameOver());
+    		g.doTurn(4); //Hafsteinn
+    		assertFalse(g.isGameOver());
+    		g.doTurn(1); //Anna
+    		assertFalse(g.isGameOver());
+    		g.doTurn(5); //Hafsteinn
+    		assertFalse(g.isGameOver());
+    		g.doTurn(2); //Anna
+    		assertEquals(true, g.isGameOver() );
+    	
+    }
+    
 
 }

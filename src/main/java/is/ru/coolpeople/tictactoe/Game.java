@@ -6,7 +6,6 @@ package is.ru.coolpeople.tictactoe;
 import java.util.Queue;
 
 public class Game {
-	//Todo: Implement game class
     private Board board;
     private Queue<Player> players; // The current player is always first in the Queue
     
@@ -35,5 +34,13 @@ public class Game {
         return (players.peek()).getName();
     }
 
+    public boolean isGameOver ()
+    {
+    		if( board.getSymbolAtIndex(0) == board.getSymbolAtIndex(1) && board.getSymbolAtIndex(1) == board.getSymbolAtIndex(2))
+    		{
+    			return true; 
+    		}
+    		return false;
+    }
     
 }
