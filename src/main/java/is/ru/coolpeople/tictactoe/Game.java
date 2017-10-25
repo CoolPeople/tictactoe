@@ -36,6 +36,7 @@ public class Game {
 
     public boolean isGameOver ()
     {
+    		//checks if game is won by horizontal lines
     		for ( int i = 0; i < 7; i +=3)
     		{
     			if ( board.getSymbolAtIndex(i) != null )
@@ -47,6 +48,7 @@ public class Game {
 			}
     		}
     		
+    		//check if game is won by vertical lines
     		for ( int i = 0; i < 3; i++)
     		{
     			if ( board.getSymbolAtIndex(i) != null )
@@ -58,6 +60,7 @@ public class Game {
 			}
     		}
     		
+    		//check if game is won by corner-to-corner lines
 		if ( board.getSymbolAtIndex(4) != null )
 		{
 			if( board.getSymbolAtIndex(0) == board.getSymbolAtIndex(4) && board.getSymbolAtIndex(4) == board.getSymbolAtIndex(8))
