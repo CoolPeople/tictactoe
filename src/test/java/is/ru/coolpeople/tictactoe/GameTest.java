@@ -135,7 +135,7 @@ public class GameTest {
         	g4.doTurn(6); //Anna
         	assertTrue( g4.isGameOver() ); 
         	
-        	//Test that the left vertical line has the same symbol in all cells, the game is over
+        	//Test that the middle vertical line has the same symbol in all cells, the game is over
     		Game g5 = new Game(players);
         g5.doTurn(1); //Anna
         assertFalse(g5.isGameOver());
@@ -147,6 +147,21 @@ public class GameTest {
         	assertFalse(g5.isGameOver());
         	g5.doTurn(7); //Anna
         	assertTrue( g5.isGameOver() ); 
+        	
+        	//Test that the right vertical line has the same symbol in all cells, the game is over
+    		Game g6 = new Game(players);
+        g6.doTurn(1); //Anna
+        assertFalse(g6.isGameOver());
+        g6.doTurn(2); //Hafsteinn
+        assertFalse(g6.isGameOver());
+        	g6.doTurn(0); //Anna
+        	assertFalse(g6.isGameOver());
+        	g6.doTurn(5); //Hafsteinn
+        	assertFalse(g6.isGameOver());
+        	g6.doTurn(7); //Anna
+        	assertFalse(g6.isGameOver());
+        	g6.doTurn(8); //Hafsteinn
+        	assertTrue( g6.isGameOver() ); 
     }
     
 
