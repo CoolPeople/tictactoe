@@ -36,21 +36,15 @@ public class Game {
 
     public boolean isGameOver ()
     {
-		if ( board.getSymbolAtIndex(0) != null )
-		{
-    			if( board.getSymbolAtIndex(0) == board.getSymbolAtIndex(1) && board.getSymbolAtIndex(1) == board.getSymbolAtIndex(2))
-    			{
-    				return true;
-    			}
-		}
-    		
-        	
-    		if ( board.getSymbolAtIndex(3) != null )
+    		for ( int i = 0; i < 4; i +=3)
     		{
-        		if( board.getSymbolAtIndex(3) == board.getSymbolAtIndex(4) && board.getSymbolAtIndex(3) == board.getSymbolAtIndex(5))
-        		{
-        			return true; 
-        		}
+    			if ( board.getSymbolAtIndex(i) != null )
+    			{
+    				if( board.getSymbolAtIndex(i) == board.getSymbolAtIndex(i+1) && board.getSymbolAtIndex(i) == board.getSymbolAtIndex(i+2))
+    				{
+    					return true;
+    				}
+			}
     		}
 
     		return false;
