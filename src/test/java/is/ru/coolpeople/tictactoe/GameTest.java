@@ -162,6 +162,19 @@ public class GameTest {
         	assertFalse(g6.isGameOver());
         	g6.doTurn(8); //Hafsteinn
         	assertTrue( g6.isGameOver() ); 
+        	
+        	//Test winning with cells 0-4-8 
+        	Game g7 = new Game(players);
+        	g7.doTurn(0); //Anna
+        	assertFalse(g7.isGameOver());
+        	g7.doTurn(1); //Hafsteinn
+        	assertFalse(g7.isGameOver());
+        	g7.doTurn(4); //Anna
+        	assertFalse(g7.isGameOver());
+        	g7.doTurn(2); //Hafsteinn
+        	assertFalse(g7.isGameOver());
+        	g7.doTurn(8); //Anna
+        	assertTrue( g7.isGameOver());
     }
     
 

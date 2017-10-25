@@ -57,6 +57,14 @@ public class Game {
     				}
 			}
     		}
+    		
+		if ( board.getSymbolAtIndex(4) != null )
+		{
+			if( board.getSymbolAtIndex(0) == board.getSymbolAtIndex(4) && board.getSymbolAtIndex(4) == board.getSymbolAtIndex(8))
+			{
+				return true;
+			}
+		}
 
     		return false;
     }
