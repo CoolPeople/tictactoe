@@ -176,7 +176,7 @@ public class GameTest {
         	g7.doTurn(8); //Anna
         	assertTrue( g7.isGameOver());
         	
-        	//Test winning with cells 0-4-8 
+        	//Test winning with cells 2-4-6 
         	Game g8 = new Game(players);
         	g8.doTurn(2); //Anna
         	assertFalse(g8.isGameOver());
