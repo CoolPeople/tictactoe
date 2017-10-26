@@ -4,10 +4,13 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
+		jcenter()
+		maven { url 'http://dl.bintray.com/content/aalmiray/kordamp' }
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath("de.obqo.gradle:gradle-lesscss-plugin:1.0-1.3.3")
+		classpath 'org.kordamp:markdown-gradle-plugin:1.0.0'
 	}
 }
 
@@ -16,6 +19,7 @@ apply plugin: 'eclipse-wtp'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
 apply plugin: 'lesscss'
+apply plugin: 'org.kordamp.markdown.convert'
 
 group = 'is.ru.coolpeople'
 version = '0.0.1-SNAPSHOT'
