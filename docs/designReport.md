@@ -31,7 +31,7 @@
 
 # Klasarit
 
-![class_diagram.png](https://scontent-arn2-1.xx.fbcdn.net/v/t34.0-12/22635189_10154847870777665_1272580463_n.png?oh=d43765756f8e81e004e8c15a8b26c755&oe=59EFC4F1 "Logo Title Text 1")
+![class_diagram.png](https://i.imgur.com/4KUq0Ub.png "Logo Title Text 1")
 
 
 # Frumgerð
