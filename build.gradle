@@ -37,3 +37,11 @@ dependencies {
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
+
+task bootRunHeroku(type: org.springframework.boot.gradle.run.BootRunTask, dependsOn: 'bootRun') {
+	group = 'Application'
+	doFirst() {
+		systemProperty 'server.port', serverPort
+	}
+}
