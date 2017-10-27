@@ -14,8 +14,10 @@ $(document).ready(function(){
 
 		this.createBoard = function(){
 			var html = "";
-			for(var i = 0; i < height*width; i++){
-				html += "<div></div>";
+			for(var i = 0; i < height; i++){
+				for(var j = 0; j < width; j++){
+					html += j == (width-1) ? "<div class='rowEnd'></div>" : "<div></div>";
+				}
 			}
 
 				$("#board").html(html).css({"grid-template-columns": "repeat("+width+", "+tileSize+"px)",
