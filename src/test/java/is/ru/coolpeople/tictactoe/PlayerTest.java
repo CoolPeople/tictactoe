@@ -14,14 +14,20 @@ public class PlayerTest {
 	@Test
 	public void symbolTest1() {
 
-		Player p = new Player("123456789");
+		Player p = new Player("Anna", "123456789");
 		assertEquals("123456789", p.getSymbol());
 	}
 
 	@Test
 	public void symbolTest2() {
 		
-		Player p = new Player("X");
+		Player p = new Player("Helgi", "X");
 		assertEquals("X", p.getSymbol());
 	}
+    
+    	@Test
+    	public void nameTest1() {
+        	Player p = new Player("Frikki","X");
+        	assertEquals("Frikki", p.getName());
+    	}
 }

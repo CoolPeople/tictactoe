@@ -11,13 +11,12 @@ public class Player {
 	private String playerName;
 
 	//function can only get inputs that are deemed acceptible
-	public Player(String symbol) {
-
+	public Player(String name, String symbol) {
+        playerName = name;
 		playerSymbol = symbol;
 	}
 
 	public String getSymbol() {
-
 		return playerSymbol;
 	}
 

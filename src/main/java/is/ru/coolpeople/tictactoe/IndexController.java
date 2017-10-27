@@ -1,21 +1,24 @@
 package is.ru.coolpeople.tictactoe;
 
 import org.springframework.boot.autoconfigure.web.ErrorController;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 /**
  * Created by olafur on 22/10/2017.
  */
 
-@RestController
+@Controller
 public class IndexController implements ErrorController {
 
 	private static final String ERROR_PATH = "/error";
 
 	@RequestMapping(value = "/")
-	public String index() {
-		return "Hello world";
+	public String index(Map<String, Object> model) {
+		model.put("message", "test");
+		return "index";
 	}
 
 
