@@ -35,4 +35,25 @@ $(document).ready(function(){
 		b.createBoard();
 	});
 
+
+
+	$(".playerCount").on("change", function(){
+		var pc2 = $(".psTwo");
+		var plural = $(".plural");
+		if(parseInt($("input[name='playerCount']:checked").val()) === 1){
+			plural.hide();
+			pc2.hide();
+			pc2.find("input").prop('disabled', true);
+		}else{
+			plural.show();
+			pc2.show();
+			pc2.find("input").prop('disabled', false);
+		}
+	}).trigger("change");
+
+
+	$(".btn.symbol").on("click", function(){
+		$(this).css("background", "blue");
+	})
+
 });
