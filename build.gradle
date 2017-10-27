@@ -45,3 +45,15 @@ task bootRunHeroku(type: org.springframework.boot.gradle.run.BootRunTask, depend
 		systemProperty 'server.port', serverPort
 	}
 }
+
+war {
+    dependsOn 'lesscss'
+}
+
+lesscss {
+    source = fileTree('web/') {
+        include 'tictactoe.less'
+    }
+    dest = 'web/'
+    compress = true
+}
