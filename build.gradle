@@ -46,15 +46,11 @@ lesscss {
     compress = true
 }
 
-task runLess(){
-	dependsOn 'lesscss'
-}
-
-task bootRunHeroku(type: org.springframework.boot.gradle.run.BootRunTask, dependsOn: 'lesscss') {
+task bootRunHeroku(type: org.springframework.boot.gradle.run.BootRunTask, dependsOn: 'bootRun') {
 	group = 'Application'
 	doFirst() {
-		println ':bootRun'
-		bootRun.execute()
 		systemProperty 'server.port', serverPort
 	}
 }
+
+tasks["compileJava"].dependsOn("lesscss")
