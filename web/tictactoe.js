@@ -10,7 +10,7 @@ $(document).ready(function(){
 			height = 3;
 		}
 
-		var tileSize = "50";
+		var tileSize = "100";
 
 		this.createBoard = function(){
 			var html = "";
@@ -18,7 +18,8 @@ $(document).ready(function(){
 				html += "<div></div>";
 			}
 
-			$("#board").html(html).css("grid-template-columns", "repeat("+width+", "+tileSize+"px)");
+				$("#board").html(html).css({"grid-template-columns": "repeat("+width+", "+tileSize+"px)",
+										 "grid-template-rows": "repeat("+height+", "+tileSize+"px) "});
 
 		}
 	}
