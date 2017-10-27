@@ -38,22 +38,23 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
-
-task bootRunHeroku(type: org.springframework.boot.gradle.run.BootRunTask, dependsOn: 'bootRun') {
-	group = 'Application'
-	doFirst() {
-		systemProperty 'server.port', serverPort
-	}
-}
-
-war {
-    dependsOn 'lesscss'
-}
-
 lesscss {
-    source = fileTree('web/') {
+    source = fileTree('src/main/less/is/ru/coolpeople/tictactoe/') {
         include 'tictactoe.less'
     }
-    dest = 'web/'
+    dest = 'src/main/resources/static/css/'
     compress = true
+}
+
+task runLess(){
+	dependsOn 'lesscss'
+}
+
+task bootRunHeroku(type: org.springframework.boot.gradle.run.BootRunTask, dependsOn: 'lesscss') {
+	group = 'Application'
+	doFirst() {
+		println ':bootRun'
+		bootRun.execute()
+		systemProperty 'server.port', serverPort
+	}
 }
