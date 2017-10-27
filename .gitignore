@@ -47,3 +47,7 @@ gradle-app.setting
 .gradle/3.5.1/fileContent/fileContent.lock
 .gradle/3.5.1/fileContent/annotation-processors.bin
 .gradle/3.5.1/file-changes/last-build.bin
+
+
+# we build our .css files from .less, so no need to commit them.
+*.css
