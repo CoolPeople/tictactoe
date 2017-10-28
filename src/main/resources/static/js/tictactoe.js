@@ -155,12 +155,7 @@ $(document).ready(function () {
                 url: "/newGame",
                 type: "POST",
                 contentType: "application/json",
-                data: JSON.stringify({
-                    players: [{name: "name", symbol: "symbol"}],
-                    boardWidth: 3,
-                    boardHeight: 3,
-                    winCondition: 3
-                }),
+                data: JSON.stringify(processForm()),
                 dataType: "json",
                 cache: false,
                 success: function () {
