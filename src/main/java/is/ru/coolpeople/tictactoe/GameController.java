@@ -19,8 +19,14 @@ public class GameController {
 
     @RequestMapping(value = "/doTurn")
     public void doTurn(@RequestParam("name") Integer slot,
-                       @RequestParam("symbol") String symbol) {
-        //todo: get game from session and call do turn
+                       HttpSession session) {
+        Game game = games.get(session.getId());
+
+        if (game == null) {
+            throw new IllegalStateException("No game created on this session");
+        }
+
+        game.doTurn(slot);
     }
 
     @PostMapping(value = "/newPlayer")
@@ -28,9 +34,8 @@ public class GameController {
                                        @RequestParam("symbol") String symbol,
                                        HttpSession session){
         Player player = new Player(name, symbol);
-        if (players.get(session.getId()) == null) {
-            players.put(session.getId(), new ArrayBlockingQueue<>(2));
-        }
+        players.computeIfAbsent(session.getId(),
+                k -> new ArrayBlockingQueue<>(2));
         players.get(session.getId()).add(player);
 
         return new ResponseEntity<>(player, HttpStatus.OK);
@@ -38,7 +43,11 @@ public class GameController {
 
     @PostMapping(value = "/newGame")
     public ResponseEntity<?> newGame(HttpSession session){
-        //todo: create new game
+        Queue<Player> sessionPlayers = players.get(session.getId());
+        if (sessionPlayers == null || sessionPlayers.size() < 2) {
+            throw new IllegalStateException("Not enough players for a new game");
+        }
+        games.put(session.getId(), new Game(sessionPlayers));
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
