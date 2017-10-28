@@ -65,18 +65,31 @@ $(document).ready(function(){
 
 
 	var validate = function(){
+		var error = [];
 		var players = parseInt($("input[name='playerCount']:checked").val());
 		var pc1name = $("#pcOneName").val() != "";
+
+		if(!pc1name){
+			error.push("Player One - Missing Name");
+		}
 
 		if(players == 2){
 			var pc2name = $("#pcTwoName").val() != "";
 			var symbols = $("#pcOneSymbol").val() != $("#pcTwoSymbol").val();
 
-			return pc1name && pc2name && symbols;
+			if(!pc2name){
+				error.push("Player Two - Missing Name");
+			}
+
+			if($("#pcOneName").val() == $("#pcTwoName").val() && pc1name && pc2name ){
+				error.push("Player names must not be identical");
+			}
+
+			if(!symbols){
+				error.push("Player One and Player Two cannot have the same symbol");
+			}
 		}
-		else{
-			return pc1name;
-		}
+		return error;
 	}
 
 
@@ -106,7 +119,14 @@ $(document).ready(function(){
 	$(".btn.reset").on("click", resetForm);
 
 	$(".btn.startGame").on("click", function(){
-		alert(JSON.stringify(processForm()));
+		var error = validate();
+		if(error.length == 0){
+			$(".error").removeClass("show");
+			alert(JSON.stringify(processForm()));
+		}
+		else{
+			$(".error").text(error).addClass("show");
+		}
 	});
 
 });
