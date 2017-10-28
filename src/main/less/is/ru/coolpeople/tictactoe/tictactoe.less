@@ -9,6 +9,10 @@
   font-style: normal;
 }
 
+h1{
+  text-align: center;
+}
+
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icon' !important;
@@ -23,17 +27,6 @@
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-
-section{
-	margin: 0 auto;
-	width:fit-content;
-	border-color: gray;
-  border-style: double;
-  border-width: 9px;
-  padding: 20px;
-
 }
 
 .icon-brand2:before {
@@ -141,4 +134,63 @@ body{
   &.show{
     display:block;
   }
+}
+
+#gameWrapper{
+  display:none;
+  &.show{
+    display:block;
+  }
+  #gameMenuButton:after, #gameOver:after{
+    content: "";
+    clear:both;
+    display:block;
+  }
+}
+
+#menuWrapper{
+  display:none;
+  &.show{
+    display:block;
+  }
+}
+
+.section{
+  margin: 0 auto;
+  width:fit-content;
+  border-color: gray;
+  border-style: double;
+  border-width: 9px;
+  padding: 20px;
+}
+
+#board{
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+#gameOver{
+  display:none;
+  &.show{
+    display:block;
+  }
+  #gameOverMessage{
+    float:right;
+    line-height:30px;
+    margin-right:15px;
+  }
+}
+
+#gameTurn{
+  display:none;
+  line-height: 30px;
+  &.show{
+    display:block;
+  }
+  text-align: center;
+}
+
+#menuButton, #playAgainButton{
+  float:right;
 }

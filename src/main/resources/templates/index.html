@@ -12,101 +12,97 @@
 </head>
 <body>
     <h1>Tic Tac Toe</h1>
-    <section>
-        <div id="menuWrapper">
-            <h2>Game Menu</h2>
-            <div class="menu gamePlayerCount">
-                <h3>Player<span class="plural" style="display:none">s</span></h3>
-                <label for="pcOne">One</label>
-                <input type="radio" name="playerCount" id="pcOne" class="playerCount" value="1" checked="checked" />
-                <label for="pcTwo">Two</label>
-                <input type="radio" name="playerCount" id="pcTwo" class="playerCount" value="2" />
+    <div id="menuWrapper" class="show section">
+        <h2>Game Menu</h2>
+        <div class="menu gamePlayerCount">
+            <h3>Player<span class="plural" style="display:none">s</span></h3>
+            <label for="pcOne">One</label>
+            <input type="radio" name="playerCount" id="pcOne" class="playerCount" value="1" checked="checked" />
+            <label for="pcTwo">Two</label>
+            <input type="radio" name="playerCount" id="pcTwo" class="playerCount" value="2" />
 
-                <div class="playerSettings">
-                    <div>
-                        <h4>Player One</h4>
-                        <label for="pcOneName">Name:</label>
-                        <input type="text" name="playerOneName" id="pcOneName" placeholder="Player One" />
-                        <br />
-                        <label id="pcOneSymbolLabel" >Symbol:</label>
-                        <div class="btn symbol icon-brand"></div>
-                        <div class="symbolList dropMenu">
-                            <div class="icon-brand2"></div>
-                            <div class="icon-brand3"></div>
-                            <div class="icon-nintendoswitch"></div>
-                            <div class="icon-tux"></div>
-                            <div class="icon-appleinc"></div>
-                            <div class="icon-windows8"></div>
-                        </div>
-                        <input type="hidden" name="playerOneSymbol" id="pcOneSymbol" value="brand" />
+            <div class="playerSettings">
+                <div>
+                    <h4>Player One</h4>
+                    <label for="pcOneName">Name:</label>
+                    <input type="text" name="playerOneName" id="pcOneName" placeholder="Player One" />
+                    <br />
+                    <label id="pcOneSymbolLabel" >Symbol:</label>
+                    <div class="btn symbol icon-brand"></div>
+                    <div class="symbolList dropMenu">
+                        <div class="icon-brand2"></div>
+                        <div class="icon-brand3"></div>
+                        <div class="icon-nintendoswitch"></div>
+                        <div class="icon-tux"></div>
+                        <div class="icon-appleinc"></div>
+                        <div class="icon-windows8"></div>
                     </div>
-                    <div class="psTwo" style="display:none">
-                        <h4>Player Two</h4>
-                        <label for="pcTwoName" >Name:</label>
-                        <input type="text" name="playerTwoName" id="pcTwoName" placeholder="Player Two" />
-                        <br />
-                        <label id="pcTwoSymbolLabel" >Symbol:</label>
-                        <div class="btn symbol icon-brand2"></div>
-                        <div class="symbolList dropMenu">
-                            <div class="icon-brand2"></div>
-                            <div class="icon-brand3"></div>
-                            <div class="icon-nintendoswitch"></div>
-                            <div class="icon-tux"></div>
-                            <div class="icon-appleinc"></div>
-                            <div class="icon-windows8"></div>
-                        </div>
-                        <input type="hidden" name="playerTwoSymbol" id="pcTwoSymbol" value="brand2" />
+                    <input type="hidden" name="playerOneSymbol" id="pcOneSymbol" value="brand" />
+                </div>
+                <div class="psTwo" style="display:none">
+                    <h4>Player Two</h4>
+                    <label for="pcTwoName" >Name:</label>
+                    <input type="text" name="playerTwoName" id="pcTwoName" placeholder="Player Two" />
+                    <br />
+                    <label id="pcTwoSymbolLabel" >Symbol:</label>
+                    <div class="btn symbol icon-brand2"></div>
+                    <div class="symbolList dropMenu">
+                        <div class="icon-brand2"></div>
+                        <div class="icon-brand3"></div>
+                        <div class="icon-nintendoswitch"></div>
+                        <div class="icon-tux"></div>
+                        <div class="icon-appleinc"></div>
+                        <div class="icon-windows8"></div>
                     </div>
+                    <input type="hidden" name="playerTwoSymbol" id="pcTwoSymbol" value="brand2" />
                 </div>
             </div>
-
-            <div class="menu gameBoardSize">
-                <h3>Board Size</h3>
-                <label for="tWidth">Width</label>
-                <input type="number" id="tWidth" name="width" min="3" max="20" value="3" />
-                <br />
-                <label for="tHeight">Height</label>
-                <input type="number" id="tHeight" name="height" min="3" max="20" value="3" />
-            </div>
-
-            <div class="menu gameWinRule">
-                <h3>Game Rule</h3>
-                <label for="winRule">Win Condition</label>
-                <input type="number" id="winRule" name="winRule" min="3" max="5" value="3" />
-            </div>
-
-            <div class="menu menuButtons">
-                <div class="btn reset">Reset</div>
-                <div class="btn startGame">Start Game</div>
-                <div class="error"></div>
-            </div>
-
         </div>
-    </section>
 
-    <section>
-        <div id="gameWrapper">
-            <div id="board">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
+        <div class="menu gameBoardSize">
+            <h3>Board Size</h3>
+            <label for="tWidth">Width</label>
+            <input type="number" id="tWidth" name="width" min="3" max="20" value="3" />
+            <br />
+            <label for="tHeight">Height</label>
+            <input type="number" id="tHeight" name="height" min="3" max="20" value="3" />
         </div>
-    </section>
 
-    <section>
-        <div class="bSize">
-            <input id="width" type="number" name="width" min="3" max="20" />
-            <input id="height" type="number" name="height" min="3" max="20" />
-            <div class="btn createBoard">Resize Board</div>
+        <div class="menu gameWinRule">
+            <h3>Game Rule</h3>
+            <label for="winRule">Win Condition</label>
+            <input type="number" id="winRule" name="winRule" min="3" max="5" value="3" />
         </div>
-    </section>
+
+        <div class="menu menuButtons">
+            <div class="btn reset">Reset</div>
+            <div class="btn startGame">Start Game</div>
+            <div class="error"></div>
+        </div>
+
+    </div>
+
+    <div id="gameWrapper" class="section">
+        <div id="gameMenuButton">
+            <div class="btn" id="menuButton">End Game</div>
+        </div>
+        <div id="board">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div id="gameTurn"></div>
+        <div id="gameOver">
+            <div class="btn" id="playAgainButton">Play Again?</div>
+            <div id="gameOverMessage"></div>
+        </div>
+    </div>
 
 <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}" src="/js/jquery-3.2.1.min.js" />
 <script type="text/javascript" th:src="@{/js/tictactoe.js}" src="/js/tictactoe.js" />

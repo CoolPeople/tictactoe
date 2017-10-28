@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-
+	var game = {};
 
 	function board(width, height){
 		if(width < 3){
@@ -52,8 +52,15 @@ $(document).ready(function(){
 
 
 	$(".btn.symbol").on("click", function(){
-		$(".symbolList.show").removeClass("show");
-		$(this).next(".symbolList").toggleClass("show");
+		if(!$(this).next(".symbolList").hasClass("show"))
+		{
+			$(".symbolList.show").removeClass("show");
+			$(this).next(".symbolList").toggleClass("show");
+		}
+		else
+		{
+			$(this).next(".symbolList").removeClass("show")
+		}
 	})
 
 	$(".symbolList > [class^='icon-']").on("click", function(){
@@ -94,12 +101,12 @@ $(document).ready(function(){
 
 
 	var resetForm = function(){
-		$("#pcOneName").val("")
-		$("#pcOneSymbol").val("brand")
-		$("#pcOneSymbolLabel").next(".symbol").attr("class", "btn symbol icon-brand")
-		$("#pcTwoName").val("")
-		$("#pcTwoSymbol").val("brand2")
-		$("#pcTwoSymbolLabel").next(".symbol").attr("class", "btn symbol icon-brand2")
+		$("#pcOneName").val("");
+		$("#pcOneSymbol").val("brand");
+		$("#pcOneSymbolLabel").next(".symbol").attr("class", "btn symbol icon-brand");
+		$("#pcTwoName").val("");
+		$("#pcTwoSymbol").val("brand2");
+		$("#pcTwoSymbolLabel").next(".symbol").attr("class", "btn symbol icon-brand2");
 		$("#pcOne").trigger("click");
 	}
 
@@ -111,9 +118,14 @@ $(document).ready(function(){
 					}
 
 	    if (parseInt($("input[name='playerCount']:checked").val()) === 2){
-			json.players.push({"name" : $("#pcTwoName").val() , "symbol" : $("#pcTwoSymbol").val()})
+			json.players.push({"name" : $("#pcTwoName").val() , "symbol" : $("#pcTwoSymbol").val()});
 	    }
 		return json;	
+	}
+
+	var toggleMenu = function(){
+		$("#menuWrapper").toggleClass("show");
+		$("#gameWrapper").toggleClass("show");
 	}
 
 	$(".btn.reset").on("click", resetForm);
@@ -121,12 +133,38 @@ $(document).ready(function(){
 	$(".btn.startGame").on("click", function(){
 		var error = validate();
 		if(error.length == 0){
+			var json = processForm();
 			$(".error").removeClass("show");
-			alert(JSON.stringify(processForm()));
+			alert(JSON.stringify(json));
+			game.players = json.players;
+			setTurn(0);
+			$("#gameOver").removeClass("show");
+			$("#gameTurn").addClass("show");
+			toggleMenu();
 		}
 		else{
 			$(".error").text(error).addClass("show");
 		}
 	});
+
+	var setTurn = function(playerIndex){
+		game.currentPlayer = playerIndex;
+		$("#gameTurn").text(game.players[playerIndex].name + "'s turn");
+	}
+
+
+	var gameOver = function(winner) {
+		$("#gameOver").addClass("show");
+		$("#gameTurn").removeClass("show");
+
+		if(winner != ""){
+			$("#gameOverMessage").text(winner + " has won!");
+		}
+		else{
+			$("#gameOverMessage").text("It's a draw");
+		}
+	}
+
+	$("#menuButton").on("click", toggleMenu);
 
 });
