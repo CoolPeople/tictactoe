@@ -26,7 +26,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 tasks.compileJava.dependsOn("lesscss")
-
+tasks.compileJava.dependsOn("markdownToHtml")
 tasks.bootRun.dependsOn("test")
 
 repositories {
@@ -42,7 +42,6 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	compile("org.springframework.boot:spring-boot-devtools")
 }
 
 lesscss {
@@ -60,6 +59,16 @@ task bootRunHeroku(type: org.springframework.boot.gradle.run.BootRunTask, depend
 	}
 }
 
+<<<<<<< HEAD
+tasks["compileJava"].dependsOn("lesscss")
+=======
 markdownToHtml.sourceDir = new File("docs")
 
-tasks["compileJava"].dependsOn("lesscss")
+lesscss {
+    source = fileTree('src/main/less') {
+        include 'lessExample.less'
+    }
+    dest = 'src/main/css'
+    compress = true
+}
+>>>>>>> master
