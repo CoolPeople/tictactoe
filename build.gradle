@@ -49,3 +49,13 @@ task bootRunHeroku(type: org.springframework.boot.gradle.run.BootRunTask, depend
 		systemProperty 'server.port', serverPort
 	}
 }
+
+markdownToHtml.sourceDir = new File("docs")
+
+lesscss {
+    source = fileTree('src/main/less') {
+        include 'lessExample.less'
+    }
+    dest = 'src/main/css'
+    compress = true
+}
