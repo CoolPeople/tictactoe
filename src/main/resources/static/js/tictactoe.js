@@ -63,4 +63,37 @@ $(document).ready(function(){
 		$(this).parent().next("input").val(cssClass.substr(5));
 	});
 
+
+	var validate = function(){
+		var players = parseInt($("input[name='playerCount']:checked").val());
+		var pc1name = $("#pcOneName").val() != "";
+
+		if(players == 2){
+			var pc2name = $("#pcTwoName").val() != "";
+			var symbols = $("#pcOneSymbol").val() != $("#pcTwoSymbol").val();
+
+			return pc1name && pc2name && symbols;
+		}
+		else{
+			return pc1name;
+		}
+	}
+
+
+	var resetForm = function(){
+		$("#pcOneName").val("")
+		$("#pcOneSymbol").val("brand")
+		$("#pcOneSymbolLabel").next(".symbol").attr("class", "btn symbol icon-brand")
+		$("#pcTwoName").val("")
+		$("#pcTwoSymbol").val("brand2")
+		$("#pcTwoSymbolLabel").next(".symbol").attr("class", "btn symbol icon-brand2")
+		$("#pcOne").trigger("click");
+	}
+
+	$(".btn.reset").on("click", resetForm);
+
+	$(".btn.startGame").on("click", function(){
+		alert(validate());
+	});
+
 });
