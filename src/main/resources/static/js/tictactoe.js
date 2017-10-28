@@ -208,6 +208,10 @@ $(document).ready(function () {
         var pName = game.players[pTurn].name;
         var pSymb = game.players[pTurn].symbol;
         console.log(pName + " " + gameTileIndex);
+
+        //talk to backend about the turn happening
+        $.post("/doTurn", {slot: gameTileIndex});
+
         $(".gameTile").eq(gameTileIndex).addClass("marked icon-" + pSymb);
 
         setTurn(pTurn != game.players.length - 1 ? game.currentPlayer + 1 : 0);
@@ -221,7 +225,14 @@ $(document).ready(function () {
             }, 1000);
         }
 
-        //todo check for win
+
+        //check for victory
+        $.get("/isGameOver", function (data) {
+            if (data) {
+                gameOver(pName);
+            }
+        });
+
         var avalTiles = $(".gameTile").not(".marked");
     }
 

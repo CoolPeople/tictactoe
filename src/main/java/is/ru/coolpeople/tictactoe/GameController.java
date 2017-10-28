@@ -9,8 +9,12 @@ import java.util.HashMap;
 public class GameController {
     static HashMap<String, Game> games;
 
+    public GameController() {
+        games = new HashMap<>();
+    }
+
     @RequestMapping(value = "/doTurn")
-    public void doTurn(@RequestParam("name") Integer slot,
+    public void doTurn(@RequestParam("slot") Integer slot,
                        HttpSession session) {
         Game game = games.get(session.getId());
 
@@ -25,6 +29,17 @@ public class GameController {
     public void newGame(@RequestBody NewGameWrapper wrapper, HttpSession session) {
         Game game = new Game(wrapper.getPlayers());
         games.put(session.getId(), game);
+    }
+
+    @GetMapping(value = "/isGameOver")
+    public boolean isGameOver(HttpSession session) {
+        Game game = games.get(session.getId());
+
+        if (game == null) {
+            throw new IllegalStateException("No game created on this session");
+        }
+
+        return game.isGameOver();
     }
 
 }
