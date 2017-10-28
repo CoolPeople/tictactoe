@@ -6,7 +6,7 @@ Tic Tac Toe by CoolPeople
 This is a project in T-303-HUGB Hugbúnaðarfræði, at Reykjavík University, on fallsemester 2017.
 
 # Documentation
-Further documentation can be found under the file `docs`. The following documents are found there.
+Further documentation can be found under the folder `docs`  in the following documents:
 
 - **designReport.md** - The *Design report* is the inital plan we made when starting the project.
 - **devManual.md** - The *Development manual* is a guide how to set up the project to start working on it.
