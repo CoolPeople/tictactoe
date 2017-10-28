@@ -37,9 +37,10 @@ $(document).ready(function(){
 
 
 	$(".playerCount").on("change", function(){
+		game.playerCount = parseInt($("input[name='playerCount']:checked").val());
 		var pc2 = $(".psTwo");
 		var plural = $(".plural");
-		if(parseInt($("input[name='playerCount']:checked").val()) === 1){
+		if(game.playerCount === 1){
 			plural.hide();
 			pc2.hide();
 			pc2.find("input").prop('disabled', true);
@@ -73,14 +74,13 @@ $(document).ready(function(){
 
 	var validate = function(){
 		var error = [];
-		var players = parseInt($("input[name='playerCount']:checked").val());
 		var pc1name = $("#pcOneName").val() != "";
 
 		if(!pc1name){
 			error.push("Player One - Missing Name");
 		}
 
-		if(players == 2){
+		if(game.playerCount === 2){
 			var pc2name = $("#pcTwoName").val() != "";
 			var symbols = $("#pcOneSymbol").val() != $("#pcTwoSymbol").val();
 
@@ -117,7 +117,7 @@ $(document).ready(function(){
 					"winCondition" : $("#winRule").val()
 					}
 
-	    if (parseInt($("input[name='playerCount']:checked").val()) === 2){
+	    if (game.playerCount === 2){
 			json.players.push({"name" : $("#pcTwoName").val() , "symbol" : $("#pcTwoSymbol").val()});
 	    }
 		return json;	
