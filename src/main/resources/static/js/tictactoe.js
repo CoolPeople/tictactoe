@@ -20,9 +20,8 @@ $(document).ready(function(){
 				}
 			}
 
-				$("#board").html(html).css({"grid-template-columns": "repeat("+width+", "+tileSize+"px)",
-										 "grid-template-rows": "repeat("+height+", "+tileSize+"px) "});
-
+			$("#board").html(html).css({"grid-template-columns": "repeat("+width+", "+tileSize+"px)",
+									 "grid-template-rows": "repeat("+height+", "+tileSize+"px) "});
 		}
 	}
 
@@ -53,7 +52,15 @@ $(document).ready(function(){
 
 
 	$(".btn.symbol").on("click", function(){
-		$(this).css("background", "blue");
+		$(".symbolList.show").removeClass("show");
+		$(this).next(".symbolList").toggleClass("show");
 	})
+
+	$(".symbolList > [class^='icon-']").on("click", function(){
+		var cssClass = $(this).attr("class");
+		$(".symbolList").removeClass("show");
+		$(this).parent().prev(".btn.symbol").attr("class", "btn symbol "+cssClass );
+		$(this).parent().next("input").val(cssClass.substr(5));
+	});
 
 });
