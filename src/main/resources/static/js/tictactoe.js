@@ -128,14 +128,22 @@ $(document).ready(function(){
 		if(error.length == 0){
 			var json = processForm();
 			$(".error").removeClass("show");
-			alert(JSON.stringify(json));
+
 			game.players = json.players;
 			setTurn(0);
 			$("#gameOver").removeClass("show");
 			$("#gameTurn").addClass("show");
 
+			if(game.playerCount == 1){
+				game.players.push({"name": "ai", "symbol": "ai"});
+				game.ai = new ai();
+			}
+
 			var b = new board(json.boardWidth, json.boardHeight);
 			b.createBoard();
+
+			console.log("new game" , json);
+			console.log(JSON.stringify(json));
 			toggleMenu();
 		}
 		else{
@@ -163,12 +171,51 @@ $(document).ready(function(){
 
 	$("#menuButton").on("click", toggleMenu);
 
-	$(document).on("click", '.gameTile', function(){
-		doTurn($(this).index());
+
+	$(document).on("click", '.gameTile:not(.marked)', function(){
+		if(!game.aiTurn){
+			doTurn($(this).index());
+		}
 	});
 
 	var doTurn = function(gameTileIndex){
-		alert(gameTileIndex);
+		var pTurn = game.currentPlayer;
+		var pName = game.players[pTurn].name;
+		var pSymb = game.players[pTurn].symbol;
+		console.log(pName +" "+ gameTileIndex);
+		$(".gameTile").eq(gameTileIndex).addClass("marked icon-"+pSymb);
+
+		setTurn(pTurn != game.players.length - 1 ? game.currentPlayer + 1 : 0);
+
+		//queue ai turn
+		if(pName != "ai" && game.playerCount == 1 && pTurn == 0)
+		{
+			game.aiTurn = true;
+			setTimeout(function(){
+				game.ai.simulateTurn();
+				game.aiTurn = false;
+			}, 1000);
+		}
+
+		//todo check for win
+		var avalTiles = $(".gameTile").not(".marked");
+	}
+
+	function ai(){
+		this.getRandomTile = function (){
+			var avalTiles = $(".gameTile").not(".marked");
+			var rand = Math.floor((Math.random() * avalTiles.length));
+
+			console.log(length);
+			return $(avalTiles[rand]).index();
+		}
+
+		this.simulateTurn = function(){
+			var tile = this.getRandomTile();
+			if(tile != -1){
+				doTurn(tile);
+			}
+		}
 	}
 
 });
