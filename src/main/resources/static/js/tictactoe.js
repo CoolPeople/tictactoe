@@ -16,7 +16,7 @@ $(document).ready(function(){
 			var html = "";
 			for(var i = 0; i < height; i++){
 				for(var j = 0; j < width; j++){
-					html += j == (width-1) ? "<div class='rowEnd'></div>" : "<div></div>";
+					html += j == (width-1) ? "<div class='gameTile rowEnd'></div>" : "<div class='gameTile'></div>";
 				}
 			}
 
@@ -24,16 +24,6 @@ $(document).ready(function(){
 									 "grid-template-rows": "repeat("+height+", "+tileSize+"px) "});
 		}
 	}
-
-
-	$(".createBoard").on("click", function(){
-		var w = $("#width").val();
-		var h = $("#height").val();
-
-		var b = new board(w,h);
-		b.createBoard();
-	});
-
 
 
 	$(".playerCount").on("change", function(){
@@ -108,6 +98,9 @@ $(document).ready(function(){
 		$("#pcTwoSymbol").val("brand2");
 		$("#pcTwoSymbolLabel").next(".symbol").attr("class", "btn symbol icon-brand2");
 		$("#pcOne").trigger("click");
+		$("#tWidth").val(3);
+		$("#tHeight").val(3);
+		$("#winRule").val(3);
 	}
 
 	var processForm = function(){
@@ -140,6 +133,9 @@ $(document).ready(function(){
 			setTurn(0);
 			$("#gameOver").removeClass("show");
 			$("#gameTurn").addClass("show");
+
+			var b = new board(json.boardWidth, json.boardHeight);
+			b.createBoard();
 			toggleMenu();
 		}
 		else{
@@ -166,5 +162,13 @@ $(document).ready(function(){
 	}
 
 	$("#menuButton").on("click", toggleMenu);
+
+	$(document).on("click", '.gameTile', function(){
+		doTurn($(this).index());
+	});
+
+	var doTurn = function(gameTileIndex){
+		alert(gameTileIndex);
+	}
 
 });
