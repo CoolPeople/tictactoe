@@ -90,10 +90,23 @@ $(document).ready(function(){
 		$("#pcOne").trigger("click");
 	}
 
+	var processForm = function(){
+		var json = {"players" : [{"name" : $("#pcOneName").val() , "symbol" : $("#pcOneSymbol").val()}],
+					"boardWidth" : $("#tWidth").val(),
+					"boardHeight" : $("#tHeight").val(),
+					"winCondition" : $("#winRule").val()
+					}
+
+	    if (parseInt($("input[name='playerCount']:checked").val()) === 2){
+			json.players.push({"name" : $("#pcTwoName").val() , "symbol" : $("#pcTwoSymbol").val()})
+	    }
+		return json;	
+	}
+
 	$(".btn.reset").on("click", resetForm);
 
 	$(".btn.startGame").on("click", function(){
-		alert(validate());
+		alert(JSON.stringify(processForm()));
 	});
 
 });
