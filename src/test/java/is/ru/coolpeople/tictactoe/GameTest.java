@@ -4,14 +4,14 @@ import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
 import org.junit.Test;
-//import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.Assert.*;
 
 /**
  * Created by olafur on 22/10/2017.
  */
 
-//@SpringBootTest
+@SpringBootTest
 public class GameTest {
     
     @Test
