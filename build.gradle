@@ -15,13 +15,6 @@ buildscript {
 }
 
 
-repositories {
-    jcenter()
-}
-
-sourceSets {
-  selenium
-}
 
 
 apply plugin: 'java'
@@ -50,6 +43,10 @@ configurations {
 }
 
 mainClassName = 'is.ru.coolpeople.TicTacToeApplication'
+
+sourceSets {
+    selenium
+}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
@@ -92,6 +89,8 @@ task bootRunHeroku(type: org.springframework.boot.gradle.run.BootRunTask, depend
 		systemProperty 'server.port', serverPort
 	}
 }
+
+
 
 markdownToHtml.sourceDir = new File("docs")
 
