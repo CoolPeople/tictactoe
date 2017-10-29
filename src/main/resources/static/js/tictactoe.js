@@ -142,7 +142,7 @@ $(document).ready(function () {
             $("#gameTurn").addClass("show");
 
             if (game.playerCount == 1) {
-                game.players.push({"name": "ai", "symbol": "ai"});
+                game.players.push({"name": "Ai", "symbol": "ai"});
                 game.ai = new ai();
             }
 
@@ -155,7 +155,7 @@ $(document).ready(function () {
                 url: "/newGame",
                 type: "POST",
                 contentType: "application/json",
-                data: JSON.stringify(processForm()),
+                data: JSON.stringify(json),
                 dataType: "json",
                 cache: false,
                 success: function () {
@@ -163,7 +163,7 @@ $(document).ready(function () {
                 }
             });
 
-
+            game.pause = false;
             toggleMenu();
         }
         else {
@@ -178,6 +178,7 @@ $(document).ready(function () {
 
 
     var gameOver = function (winner) {
+        game.pause = true;
         $("#gameOver").addClass("show");
         $("#gameTurn").removeClass("show");
 
@@ -193,7 +194,7 @@ $(document).ready(function () {
 
 
     $(document).on("click", '.gameTile:not(.marked)', function () {
-        if (!game.aiTurn) {
+        if (!game.pause) {
             doTurn($(this).index());
         }
     });
@@ -205,30 +206,43 @@ $(document).ready(function () {
         console.log(pName + " " + gameTileIndex);
 
         //talk to backend about the turn happening
-        $.post("/doTurn", {slot: gameTileIndex});
+        var turnResult;
+        $.ajax({method: "POST",
+            url: "/doTurn",
+            data:  {slot: gameTileIndex},
+            async: false,
+            complete :  function(result){
+                turnResult = result.responseText;
+                console.log(turnResult);
+            }});
 
-        $(".gameTile").eq(gameTileIndex).addClass("marked icon-" + pSymb);
+        if(turnResult == 0){ //invalid move
+            console.log("invalid move");
+        }
+        else if(turnResult == 1) //valid move
+        {
+            $(".gameTile").eq(gameTileIndex).addClass("marked icon-" + pSymb);
 
-        setTurn(pTurn != game.players.length - 1 ? game.currentPlayer + 1 : 0);
+            setTurn(pTurn != game.players.length - 1 ? game.currentPlayer + 1 : 0);
 
-        //queue ai turn
-        if (pName != "ai" && game.playerCount == 1 && pTurn == 0) {
-            game.aiTurn = true;
-            setTimeout(function () {
-                game.ai.simulateTurn();
-                game.aiTurn = false;
-            }, 1000);
+            //queue ai turn
+            if (pName != "Ai" && game.playerCount == 1 && pTurn == 0) {
+                game.pause = true;
+                setTimeout(function () {
+                    game.ai.simulateTurn();
+                    game.pause = false;
+                }, 1000);
+            }
+
+        }else if(turnResult == 2){ //game over
+
+            $(".gameTile").eq(gameTileIndex).addClass("marked icon-" + pSymb);
+            gameOver(pName);
         }
 
-
-        //check for victory
-        $.get("/isGameOver", function (data) {
-            if (data) {
-                gameOver(pName);
-            }
-        });
-
-        var avalTiles = $(".gameTile").not(".marked");
+        if(turnResult == 1 && $(".gameTile").not(".marked").length == 0){
+            gameOver("");
+        }
     }
 
     function ai() {
@@ -247,5 +261,31 @@ $(document).ready(function () {
             }
         }
     }
+
+    $("#playAgainButton").on("click", function(){
+        toggleMenu();
+        $(".btn.startGame").trigger("click");
+    });
+
+
+    $(".boardSize").on("change", function(){
+        var w = parseInt($("#tWidth").val());
+        var h = parseInt($("#tHeight").val());
+        var max = Math.min(w, h);
+        if(w < 4 || h < 4){
+            $("#winRule").attr("min", 3).attr("max", 3).val(3);
+        }
+        else{
+            $("#winRule").attr("min", 4).trigger("change");
+            $("#winRule").attr("max", max);
+
+            if(parseInt($("#winRule").val()) > max){
+                $("#winRule").val(max);
+            }
+            else if(parseInt($("#winRule").val()) < 4){
+                $("#winRule").val(4);
+            }
+        }
+    })
 
 });
