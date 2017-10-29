@@ -27,7 +27,8 @@ public class GameController {
 
     @PostMapping(value = "/newGame", headers = "Accept=application/json", consumes="application/json")
     public void newGame(@RequestBody NewGameWrapper wrapper, HttpSession session) {
-        Game game = new Game(wrapper.getPlayers());
+        Game game = new Game(wrapper.getPlayers(), wrapper.getBoardWidth(), wrapper.getBoardHeight());
+        game.setWinCondition(wrapper.getWinCondition());
         games.put(session.getId(), game);
     }
 
