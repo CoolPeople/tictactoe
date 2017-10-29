@@ -124,9 +124,9 @@ public class GameTest {
         Board b = g.getBoard();
         String[] grid = b.getGrid();
 
-        assertTrue(grid[0] == "X");
-        assertTrue(grid[1] == "O");
-        assertTrue(grid[2] == "X");
+        assertEquals("X",grid[0]);
+        assertEquals("O",grid[1]);
+        assertEquals("X",grid[2]);
     }
 
     @Test
@@ -137,13 +137,36 @@ public class GameTest {
         players.add(p1);
         players.add(p2);
         //Test winning with cells on 0 - 1 - 2, test that do turn returns gameOver enum
-        Game g8 = new Game(players);
         Game g = new Game(players);
         g.doTurn(0); //Anna
         g.doTurn(4); //Hafsteinn
         g.doTurn(1); //Anna
         g.doTurn(5); //Hafsteinn
         assertEquals(TurnResult.gameOver, g.doTurn(2)); //Anna Wins
+    }
+
+    @Test
+    public void testDoTurnGameOverCustomSizeAndWinCondition() {
+        Player p1 = new Player("Anna", "X");
+        Player p2 = new Player("Hafsteinn", "O");
+        Queue<Player> players = new ArrayBlockingQueue<Player>(2);
+        players.add(p1);
+        players.add(p2);
+        //Test winning with cells on 0 - 1 - 2, test that do turn returns gameOver enum
+        Game g = new Game(players,5,5);
+        g.setWinCondition(5);
+        g.doTurn(0); //Anna
+        g.doTurn(4); //Hafsteinn
+        g.doTurn(6); //Anna
+        g.doTurn(9); //Hafsteinn
+        g.doTurn(12); //Anna
+        assertFalse(g.isGameOver());
+        g.doTurn(3); //Hafsteinn
+        g.doTurn(18); //Anna
+        assertFalse(g.isGameOver());
+        g.doTurn(2); //Hafsteinn
+        assertEquals(TurnResult.gameOver, g.doTurn(24)); //Anna
+        assertTrue(g.isGameOver()); //Anna Wins
     }
 
     @Test
