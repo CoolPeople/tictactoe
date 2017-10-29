@@ -58,3 +58,6 @@ gradle-app.setting
 
 *.bin
 *.lock
+src/main/resources/templates/designReport.html
+src/main/resources/templates/adminManual.html
+src/main/resources/templates/devManual.html
