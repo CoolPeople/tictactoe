@@ -71,14 +71,6 @@ test.useTestNG()
 task selenium(type: Test, dependsOn: installDist) {
     testClassesDir = sourceSets.selenium.output.classesDir
     classpath = sourceSets.selenium.runtimeClasspath
-
-    doFirst {
-        'gradle run -x test --build-cache'.execute()
-    }
-
-    doLast {
-        'gradle stop'.execute()
-    }
 }
 
 lesscss {
