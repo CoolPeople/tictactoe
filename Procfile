@@ -1,1 +1,1 @@
-web: ./gradlew selenium bootRun
+web: ./gradlew selenium bootRun --build-cache
