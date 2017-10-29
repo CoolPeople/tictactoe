@@ -1,1 +1,1 @@
-web: ./gradlew selenium bootRun --build-cache
+web: ./gradlew test selenium run --build-cache
