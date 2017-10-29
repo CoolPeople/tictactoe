@@ -71,4 +71,74 @@ public class BoardTest {
 		//Grid should be initialized
 		assertFalse(board.grid == null);
 	}
+
+    @Test
+	public void testDefaultBoardSize() {
+		//Set up new board
+		Board board = new Board();
+
+		//Grid should be initialized and have 25 tiles
+		assertFalse(board.grid == null);
+		assertEquals(3, board.getWidth());
+		assertEquals(3, board.getHeight());
+		assertEquals(9, board.grid.length);
+	}
+
+    @Test
+	public void testCustomBoard() {
+		//Set up new board
+		int width = 5;
+		int height = 5;
+		Board board = new Board(width, height);
+
+		//Grid should be initialized and have 25 tiles
+		assertFalse(board.grid == null);
+		assertEquals(width, board.getWidth());
+		assertEquals(height, board.getHeight());
+		assertEquals(25, board.grid.length);
+	}
+
+    @Test
+	public void testInvalidBoardSize() {
+		//Set up new board with invalid size
+		boolean caughtExceptionOne = false;
+		boolean caughtExceptionTwo = false;
+		try {
+			Board board = new Board(1,2);
+		} catch (IllegalArgumentException e) {
+			caughtExceptionOne = true;
+		}
+
+		try {
+			Board board = new Board(3,2);
+		} catch (IllegalArgumentException e) {
+			caughtExceptionTwo = true;
+		}
+
+		//should catch exception
+		assertTrue(caughtExceptionOne && caughtExceptionTwo);
+	}
+
+
+    @Test
+	public void testIfBoardIsFull() {
+
+		Board b = new Board(3, 3);
+		String[] g = b.getGrid();
+
+        b.getGrid()[0] = "test";
+        b.getGrid()[1] = "test";
+        b.getGrid()[2] = "test";
+        assertFalse(b.isFull());
+        b.getGrid()[3] = "test";
+        b.getGrid()[4] = "test";
+        b.getGrid()[5] = "test";
+        assertFalse(b.isFull());
+        b.getGrid()[6] = "test";
+        b.getGrid()[7] = "test";
+        b.getGrid()[8] = "test";
+        assertTrue(b.isFull());
+
+	}
+
 }

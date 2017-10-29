@@ -1,0 +1,193 @@
+@font-face {
+  font-family: 'icon';
+  src:  url('font/icon.eot?r1krzg');
+  src:  url('font/icon.eot?r1krzg#iefix') format('embedded-opentype'),
+    url('font/icon.ttf?r1krzg') format('truetype'),
+    url('font/icon.woff?r1krzg') format('woff'),
+    url('font/icon.svg?r1krzg#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1{
+  text-align: center;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  color:black;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-brand:before {
+  content: "\e900";
+}
+.icon-brand2:before {
+  content: "\e901";
+}
+.icon-nintendoswitch:before {
+  content: "\e902";
+}
+.icon-tux:before {
+  content: "\eabd";
+}
+.icon-appleinc:before {
+  content: "\eabe";
+}
+.icon-windows8:before {
+  content: "\eac2";
+}
+.icon-ai:before {
+  content: "\e9fa";
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  grid-gap: 10px;
+  background-color: #fff;
+  color: #444;
+}
+
+
+#board > div {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+}
+
+.bSize{
+  margin-top:30px;
+}
+
+.bSize input{
+padding:5px;
+margin-bottom:10px;
+margin-right:10px;
+}
+
+.btn{
+  border-radius: 3px;
+  border: 1px solid darkgray;
+  padding: 5px 10px;
+  width: fit-content;
+  cursor: pointer;
+  &.symbol{
+    display:inline-block;
+  }
+}
+
+body{
+  background: lightgray;
+}
+
+.symbolList.dropMenu{
+  display:none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  left: 59px;
+  border: 1px darkgray;
+  padding: 10px;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 10px;
+  background: darkgray;
+  &.show{
+    display:grid;
+  }
+  [class^="icon-"], [class*=" icon-"]{
+    border-radius: 3px;
+    border: 1px solid darkgray;
+    padding: 5px 10px;
+    width: fit-content;
+    background: lightgray;
+    font-size:20px;
+    display:inline-grid;
+    cursor:pointer;
+  }
+}
+
+
+.menu{
+  position:relative;
+}
+
+.error{
+  display:none;
+  background:red;
+  &.show{
+    display:block;
+  }
+}
+
+#gameWrapper{
+  display:none;
+  &.show{
+    display:block;
+  }
+  #gameMenuButton:after, #gameOver:after{
+    content: "";
+    clear:both;
+    display:block;
+  }
+}
+
+#menuWrapper{
+  display:none;
+  &.show{
+    display:block;
+  }
+}
+
+.section{
+  margin: 0 auto;
+  width:fit-content;
+  border-color: gray;
+  border-style: double;
+  border-width: 9px;
+  padding: 20px;
+}
+
+#board{
+    width: fit-content;
+    margin: 15px auto;
+}
+
+#gameOver{
+  display:none;
+  &.show{
+    display:block;
+  }
+  #gameOverMessage{
+    float:right;
+    line-height:30px;
+    margin-right:15px;
+  }
+}
+
+#gameTurn{
+  display:none;
+  line-height: 30px;
+  &.show{
+    display:block;
+  }
+  text-align: center;
+}
+
+#menuButton, #playAgainButton{
+  float:right;
+}

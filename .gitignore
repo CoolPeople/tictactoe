@@ -1,3 +1,5 @@
+.gradle
+
 Q.gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -36,3 +38,23 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+.gradle/buildOutputCleanup/cache.properties
+.gradle/buildOutputCleanup/cache.properties.lock
+.gradle/buildOutputCleanup/built.bin
+*taskHistory.lock
+*taskHistory.locktaskHistory.bin
+*jvmClassSignatures.bin
+*fileSnapshots.bin
+*fileHashes.bin
+*fileContent.lock
+*annotation-processors.bin
+*last-build.bin
+
+
+# we build our .css files from .less, so no need to commit them.
+*.css
+
+
+
+*.bin
+*.lock

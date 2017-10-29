@@ -5,24 +5,29 @@ package is.ru.coolpeople.tictactoe;
  */
 
 public class Player {
-	
-	private String playerSymbol = "SymbolMissing";
-	//playerName will maybe not be used
-	private String playerName;
+	public String name;
+	public String symbol;
+
+	public Player() {
+	}
 
 	//function can only get inputs that are deemed acceptible
 	public Player(String name, String symbol) {
-        playerName = name;
-		playerSymbol = symbol;
-	}
-
-	public String getSymbol() {
-		return playerSymbol;
+        this.name = name;
+		this.symbol = symbol;
 	}
 
 	public String getName() {
-		
-		return playerName;
+		return name;
+	}
+	public String getSymbol() {
+		return symbol;
 	}
 
+	public void setName(String playerName) {
+		this.name = playerName;
+	}
+	public void setSymbol(String playerSymbol) {
+		this.symbol = playerSymbol;
+	}
 }
