@@ -34,11 +34,11 @@ $(document).ready(function () {
         var plural = $(".plural");
         if (game.playerCount === 1) {
             plural.hide();
-            pc2.hide();
+            pc2.removeClass("show");
             pc2.find("input").prop('disabled', true);
         } else {
             plural.show();
-            pc2.show();
+            pc2.addClass("show");
             pc2.find("input").prop('disabled', false);
         }
     }).trigger("change");
@@ -101,6 +101,8 @@ $(document).ready(function () {
         $("#tWidth").val(3);
         $("#tHeight").val(3);
         $("#winRule").val(3);
+        $(".symbolList").removeClass("show");
+        $(".error").text("").removeClass("show");
     }
 
     var processForm = function () {
@@ -124,6 +126,7 @@ $(document).ready(function () {
     }
 
     var toggleMenu = function () {
+        $(".symbolList").removeClass("show");
         $("#menuWrapper").toggleClass("show");
         $("#gameWrapper").toggleClass("show");
     }
@@ -167,7 +170,12 @@ $(document).ready(function () {
             toggleMenu();
         }
         else {
-            $(".error").text(error).addClass("show");
+
+            var errorString = "";
+            for(var i = 0; i < error.length; i++){
+                errorString += error[i] + "<br />";
+            }
+            $(".error").html(errorString).addClass("show");
         }
     });
 
