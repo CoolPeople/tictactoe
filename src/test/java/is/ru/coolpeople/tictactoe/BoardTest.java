@@ -73,12 +73,28 @@ public class BoardTest {
 	}
 
     @Test
-	public void testCustomBoard() {
+	public void testDefaultBoardSize() {
 		//Set up new board
-		Board board = new Board(5,5);
+		Board board = new Board();
 
 		//Grid should be initialized and have 25 tiles
 		assertFalse(board.grid == null);
+		assertEquals(3, board.getWidth());
+		assertEquals(3, board.getHeight());
+		assertEquals(9, board.grid.length);
+	}
+
+    @Test
+	public void testCustomBoard() {
+		//Set up new board
+		int width = 5;
+		int height = 5;
+		Board board = new Board(width, height);
+
+		//Grid should be initialized and have 25 tiles
+		assertFalse(board.grid == null);
+		assertEquals(width, board.getWidth());
+		assertEquals(height, board.getHeight());
 		assertEquals(25, board.grid.length);
 	}
 
