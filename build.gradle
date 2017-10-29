@@ -14,7 +14,11 @@ buildscript {
 	}
 }
 
+
+
+
 apply plugin: 'java'
+apply plugin: 'application'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
@@ -38,12 +42,39 @@ configurations {
 	providedRuntime
 }
 
+mainClassName = 'is.ru.coolpeople.TicTacToeApplication'
+
+sourceSets {
+    selenium
+}
+
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	compile("org.springframework.boot:spring-boot-devtools")
+	compile 'com.google.guava:guava:22.0'
+
+    testCompile 'org.testng:testng:6.10'
+
+	seleniumCompile group: 'commons-logging', name: 'commons-logging', version: '1.1.1'
+
+	seleniumCompile 'junit:junit:4.12'
+	seleniumCompile "org.seleniumhq.selenium:selenium-chrome-driver"
+	seleniumCompile 'org.seleniumhq.selenium:selenium-java'
+
+}
+
+test.useTestNG()
+
+task selenium(type: Test, dependsOn: installDist) {
+  testClassesDir = sourceSets.selenium.output.classesDir
+  classpath = sourceSets.selenium.runtimeClasspath
+
+  doFirst {
+    'build/install/tictactoe/bin/tictactoe'.execute()
+  }
 }
 
 lesscss {
@@ -60,6 +91,8 @@ task bootRunHeroku(type: org.springframework.boot.gradle.run.BootRunTask, depend
 		systemProperty 'server.port', serverPort
 	}
 }
+
+
 
 markdownToHtml.sourceDir = new File("docs")
 
