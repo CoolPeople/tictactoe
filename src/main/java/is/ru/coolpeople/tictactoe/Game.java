@@ -25,14 +25,14 @@ public class Game {
     }
 
     // Returns false if the cell has already been marked, otherwise, markes the cell
-    public boolean doTurn(int index) {
+    public TurnResult doTurn(int index) {
         if (board.getSymbolAtIndex(index) != null) {
-            return false;
+            return TurnResult.invalid;
         }
 
         board.placeSymbol(players.peek().getSymbol(), index);
         players.add(players.poll()); //changes the current player
-        return true;
+        return isGameOver() ? TurnResult.gameOver : TurnResult.valid;
     }
 
     public Board getBoard() {
