@@ -17,6 +17,7 @@ script:
   - whereis google-chrome-stable
   - whereis chromedriver
   - ./gradlew check
+  - ./gradlew test
   - ./gradlew selenium
   
 deploy:
