@@ -71,6 +71,14 @@ test.useTestNG()
 task selenium(type: Test, dependsOn: installDist) {
     testClassesDir = sourceSets.selenium.output.classesDir
     classpath = sourceSets.selenium.runtimeClasspath
+
+    doFirst {
+        './gradlew run -x test'.execute()
+    }
+
+    doLast {
+        './gradlew stop'.execute()
+    }
 }
 
 lesscss {
