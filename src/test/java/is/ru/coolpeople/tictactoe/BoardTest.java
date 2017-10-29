@@ -71,4 +71,15 @@ public class BoardTest {
 		//Grid should be initialized
 		assertFalse(board.grid == null);
 	}
+
+    @Test
+	public void testCustomBoard() {
+		//Set up new board
+		Board board = new Board(5,5);
+
+		//Grid should be initialized and have 25 tiles
+		assertFalse(board.grid == null);
+		assertTrue(board.grid.length == 25);
+	}
+
 }
