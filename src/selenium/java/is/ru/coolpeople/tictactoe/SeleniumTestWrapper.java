@@ -2,10 +2,13 @@ package is.ru.coolpeople.tictactoe;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public abstract class SeleniumTestWrapper {
     static ChromeDriver driver;
@@ -14,7 +17,18 @@ public abstract class SeleniumTestWrapper {
 
     @BeforeClass
     public static void openBrowser() {
-        driver = new ChromeDriver();
+        final ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.setBinary("/path/to/google-chrome-stable");
+        chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--disable-gpu");
+
+        final DesiredCapabilities dc = new DesiredCapabilities();
+        dc.setJavascriptEnabled(true);
+        dc.setCapability(
+                ChromeOptions.CAPABILITY, chromeOptions
+        );
+
+        driver = new ChromeDriver(dc);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         port = System.getenv("PORT");
