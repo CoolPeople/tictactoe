@@ -17,6 +17,7 @@ public class TestTicTacToe extends SeleniumTestWrapper {
   @Test
   public void testPlayerOneName() throws Exception {
     driver.get(baseUrl);
+<<<<<<< HEAD
     /* Remove Thread.sleep... */
     WebElement input = driver.findElement(By.id("pcOneName"));
     input.sendKeys("Adam");
@@ -70,6 +71,8 @@ public class TestTicTacToe extends SeleniumTestWrapper {
     WebElement input5 = driver.findElement(By.id("gameOver"));
     assertTrue(input5.getAttribute("class").contains("show"));
 
+=======
+>>>>>>> master
   }
 
 }
