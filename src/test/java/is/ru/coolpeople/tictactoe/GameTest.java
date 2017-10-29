@@ -111,15 +111,15 @@ public class GameTest {
         Game g = new Game(players);
 
         assertEquals("Anna", g.currentPlayerName());
-        assertTrue(g.doTurn(0)); //Anna
+        assertEquals(TurnResult.valid, g.doTurn(0)); //Anna
         assertEquals("Hafsteinn", g.currentPlayerName());
-        assertTrue(g.doTurn(1)); //Hafsteinn
+        assertEquals(TurnResult.valid, g.doTurn(1)); //Hafsteinn
         assertEquals("Anna", g.currentPlayerName());
-        assertFalse(g.doTurn(1)); //Anna
+        assertEquals(TurnResult.invalid, g.doTurn(1)); //Anna
         assertEquals("Anna", g.currentPlayerName());
-        assertTrue(g.doTurn(2)); //Anna
+        assertEquals(TurnResult.valid, g.doTurn(2)); //Anna
         assertEquals("Hafsteinn", g.currentPlayerName());
-        assertFalse(g.doTurn(1)); //Hafsteinn
+        assertEquals(TurnResult.invalid, g.doTurn(1)); //Hafsteinn
 
         Board b = g.getBoard();
         String[] grid = b.getGrid();
@@ -127,6 +127,22 @@ public class GameTest {
         assertTrue(grid[0] == "X");
         assertTrue(grid[1] == "O");
         assertTrue(grid[2] == "X");
+    }
+
+    public void testDoTurnGameOver() {
+        Player p1 = new Player("Anna", "X");
+        Player p2 = new Player("Hafsteinn", "O");
+        Queue<Player> players = new ArrayBlockingQueue<Player>(2);
+        players.add(p1);
+        players.add(p2);
+        //Test winning with cells on 0 - 1 - 2, test that do turn returns gameOver enum
+        Game g8 = new Game(players);
+        Game g = new Game(players);
+        g.doTurn(0); //Anna
+        g.doTurn(4); //Hafsteinn
+        g.doTurn(1); //Anna
+        g.doTurn(5); //Hafsteinn
+        assertEquals(TurnResult.gameOver, g.doTurn(2)); //Anna Wins
     }
 
     @Test
