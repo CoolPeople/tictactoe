@@ -41,7 +41,7 @@ public class GameTest {
     }
 
     @Test
-    public void testWinCondition() {
+    public void testDefaultWinConditionValue() {
         Player p1 = new Player("Anna", "X");
         Queue<Player> players = new ArrayBlockingQueue<Player>(2);
         players.add(p1);
@@ -51,7 +51,7 @@ public class GameTest {
     }
 
     @Test
-    public void testCustomWinCondition() {
+    public void testCustomWinConditionValue() {
         Player p1 = new Player("Anna", "X");
         Queue<Player> players = new ArrayBlockingQueue<Player>(2);
         players.add(p1);
@@ -59,6 +59,32 @@ public class GameTest {
         assertTrue(g != null);
         g.setWinCondition(5);
         assertEquals(5, g.getWinCondition());
+    }
+
+    @Test
+    public void testInvalidWinConditionException() {
+        Player p1 = new Player("Anna", "X");
+        Queue<Player> players = new ArrayBlockingQueue<Player>(2);
+        players.add(p1);
+        Game g = new Game(players);
+        assertTrue(g != null);
+
+        boolean caughtExceptionOne = false;
+        boolean caughtExceptionTwo = false;
+
+		try {
+			g.setWinCondition(1);
+		} catch (IllegalArgumentException e) {
+			caughtExceptionOne = true;
+		}
+
+		try {
+			g.setWinCondition(2);
+		} catch (IllegalArgumentException e) {
+			caughtExceptionTwo = true;
+		}
+
+        assertTrue(caughtExceptionOne && caughtExceptionTwo);
     }
 
     @Test
