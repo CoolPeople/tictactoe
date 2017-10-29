@@ -239,6 +239,10 @@ $(document).ready(function () {
             $(".gameTile").eq(gameTileIndex).addClass("marked icon-" + pSymb);
             gameOver(pName);
         }
+
+        if(turnResult == 1 && $(".gameTile").not(".marked").length == 0){
+            gameOver("");
+        }
     }
 
     function ai() {
