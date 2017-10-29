@@ -142,7 +142,7 @@ $(document).ready(function () {
             $("#gameTurn").addClass("show");
 
             if (game.playerCount == 1) {
-                game.players.push({"name": "ai", "symbol": "ai"});
+                game.players.push({"name": "Ai", "symbol": "ai"});
                 game.ai = new ai();
             }
 
@@ -155,7 +155,7 @@ $(document).ready(function () {
                 url: "/newGame",
                 type: "POST",
                 contentType: "application/json",
-                data: JSON.stringify(processForm()),
+                data: JSON.stringify(json),
                 dataType: "json",
                 cache: false,
                 success: function () {
@@ -213,6 +213,7 @@ $(document).ready(function () {
             async: false,
             complete :  function(result){
                 turnResult = result.responseText;
+                console.log(turnResult);
             }});
 
         if(turnResult == 0){ //invalid move
@@ -220,13 +221,12 @@ $(document).ready(function () {
         }
         else if(turnResult == 1) //valid move
         {
-
             $(".gameTile").eq(gameTileIndex).addClass("marked icon-" + pSymb);
 
             setTurn(pTurn != game.players.length - 1 ? game.currentPlayer + 1 : 0);
 
             //queue ai turn
-            if (pName != "ai" && game.playerCount == 1 && pTurn == 0) {
+            if (pName != "Ai" && game.playerCount == 1 && pTurn == 0) {
                 game.pause = true;
                 setTimeout(function () {
                     game.ai.simulateTurn();
