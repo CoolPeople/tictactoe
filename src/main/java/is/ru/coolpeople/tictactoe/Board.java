@@ -38,6 +38,16 @@ public class Board {
 		return grid;
 	}
 
+	boolean isFull(){
+	    int count = 0;
+        for(int i = 0; i < grid.length; i++){
+            if(grid[i] != null){
+                count++;
+            }
+        }
+        return count == grid.length;
+	}
+
 	void placeSymbol(String symbol, int index) {
 		if (index >= grid.length || index < 0) {
 			throw new IllegalArgumentException("Index not between 0 and 9");
