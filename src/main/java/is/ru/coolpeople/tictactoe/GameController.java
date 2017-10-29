@@ -14,7 +14,7 @@ public class GameController {
     }
 
     @RequestMapping(value = "/doTurn")
-    public void doTurn(@RequestParam("slot") Integer slot,
+    public int doTurn(@RequestParam("slot") Integer slot,
                        HttpSession session) {
         Game game = games.get(session.getId());
 
@@ -22,7 +22,7 @@ public class GameController {
             throw new IllegalStateException("No game created on this session");
         }
 
-        game.doTurn(slot);
+        return game.doTurn(slot).ordinal();
     }
 
     @PostMapping(value = "/newGame", headers = "Accept=application/json", consumes="application/json")

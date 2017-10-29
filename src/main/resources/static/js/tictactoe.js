@@ -163,7 +163,7 @@ $(document).ready(function () {
                 }
             });
 
-
+            game.pause = false;
             toggleMenu();
         }
         else {
@@ -178,6 +178,7 @@ $(document).ready(function () {
 
 
     var gameOver = function (winner) {
+        game.pause = true;
         $("#gameOver").addClass("show");
         $("#gameTurn").removeClass("show");
 
@@ -193,7 +194,7 @@ $(document).ready(function () {
 
 
     $(document).on("click", '.gameTile:not(.marked)', function () {
-        if (!game.aiTurn) {
+        if (!game.pause) {
             doTurn($(this).index());
         }
     });
@@ -205,30 +206,39 @@ $(document).ready(function () {
         console.log(pName + " " + gameTileIndex);
 
         //talk to backend about the turn happening
-        $.post("/doTurn", {slot: gameTileIndex});
+        var turnResult;
+        $.ajax({method: "POST",
+            url: "/doTurn",
+            data:  {slot: gameTileIndex},
+            async: false,
+            complete :  function(result){
+                turnResult = result.responseText;
+            }});
 
-        $(".gameTile").eq(gameTileIndex).addClass("marked icon-" + pSymb);
-
-        setTurn(pTurn != game.players.length - 1 ? game.currentPlayer + 1 : 0);
-
-        //queue ai turn
-        if (pName != "ai" && game.playerCount == 1 && pTurn == 0) {
-            game.aiTurn = true;
-            setTimeout(function () {
-                game.ai.simulateTurn();
-                game.aiTurn = false;
-            }, 1000);
+        if(turnResult == 0){ //invalid move
+            console.log("invalid move");
         }
+        else if(turnResult == 1) //valid move
+        {
 
+            $(".gameTile").eq(gameTileIndex).addClass("marked icon-" + pSymb);
 
-        //check for victory
-        $.get("/isGameOver", function (data) {
-            if (data) {
-                gameOver(pName);
+            setTurn(pTurn != game.players.length - 1 ? game.currentPlayer + 1 : 0);
+
+            //queue ai turn
+            if (pName != "ai" && game.playerCount == 1 && pTurn == 0) {
+                game.pause = true;
+                setTimeout(function () {
+                    game.ai.simulateTurn();
+                    game.pause = false;
+                }, 1000);
             }
-        });
 
-        var avalTiles = $(".gameTile").not(".marked");
+        }else if(turnResult == 2){ //game over
+
+            $(".gameTile").eq(gameTileIndex).addClass("marked icon-" + pSymb);
+            gameOver(pName);
+        }
     }
 
     function ai() {
@@ -247,5 +257,10 @@ $(document).ready(function () {
             }
         }
     }
+
+    $("#playAgainButton").on("click", function(){
+        toggleMenu();
+        $(".btn.startGame").trigger("click");
+    });
 
 });
