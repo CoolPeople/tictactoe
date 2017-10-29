@@ -27,7 +27,7 @@ public class GameTest {
     }
 
     @Test
-    public void testMakesCustomGame() {
+    public void testMakesCustomGameSize() {
         Player p1 = new Player("Anna", "X");
         Player p2 = new Player("Hafsteinn", "O");
         Queue<Player> players = new ArrayBlockingQueue<Player>(2);
@@ -38,6 +38,16 @@ public class GameTest {
         Game g = new Game(players, boardWith, boardHeight);
         assertTrue(g != null);
         assertEquals((boardWith * boardHeight), g.getBoard().getGrid().length);
+    }
+
+    @Test
+    public void testWinCondition() {
+        Player p1 = new Player("Anna", "X");
+        Queue<Player> players = new ArrayBlockingQueue<Player>(2);
+        players.add(p1);
+        Game g = new Game(players);
+        assertTrue(g != null);
+        assertEquals(3, g.getWinCondition());
     }
 
     @Test
