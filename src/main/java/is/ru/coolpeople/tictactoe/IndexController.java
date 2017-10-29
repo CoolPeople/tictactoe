@@ -21,6 +21,20 @@ public class IndexController implements ErrorController {
 		return "index";
 	}
 
+	@RequestMapping(value = "/design")
+	public String design(Map<String, Object> model) {
+		return "designReport";
+	}
+
+	@RequestMapping(value = "/administration")
+	public String administration(Map<String, Object> model) {
+		return "adminManual";
+	}
+
+	@RequestMapping(value = "/development")
+	public String development(Map<String, Object> model) {
+		return "devManual";
+	}
 
 	@RequestMapping(value = ERROR_PATH)
 	public String error() {

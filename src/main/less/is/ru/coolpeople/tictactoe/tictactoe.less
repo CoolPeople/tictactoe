@@ -156,6 +156,26 @@ input{
   }
 }
 
+#footer{
+  position: fixed;
+  bottom: 0px;
+  padding: 20px;
+  border-top: 1px solid black;
+  left: 0px;
+  right: 0px;
+  background: black;
+  color: white;
+  & > span {
+    margin-right:10px;
+  }
+  & > a{
+    margin-right:20px;
+    color:green;
+    &:visited,:active,:hover{
+      color:darkgreen;
+    }
+  }
+}
 
 .menu{
   position:relative;
