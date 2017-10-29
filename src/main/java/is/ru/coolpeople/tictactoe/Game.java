@@ -15,6 +15,7 @@ public class Game {
     private int winCondition = minWinCondition;
 
     private int lastValidMove;
+    private String lastSymbol;
 
     public Game(Queue<Player> playersQueue) {
         board = new Board();
@@ -31,10 +32,11 @@ public class Game {
         if (board.getSymbolAtIndex(index) != null) {
             return TurnResult.invalid;
         }
-
-        board.placeSymbol(players.peek().getSymbol(), index);
-        players.add(players.poll()); //changes the current player
         lastValidMove = index;
+        lastSymbol = players.peek().getSymbol();
+        board.placeSymbol(lastSymbol, index);
+        players.add(players.poll()); //changes the current player
+
         return isGameOver() ? TurnResult.gameOver : TurnResult.valid;
     }
 
@@ -44,6 +46,10 @@ public class Game {
 
     public int getLastValidMove() {
         return lastValidMove;
+    }
+
+    public String getLastSymbol() {
+        return lastSymbol;
     }
 
     public String currentPlayerName() {
