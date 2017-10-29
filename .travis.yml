@@ -1,5 +1,15 @@
 language: java
 jdk:
   - oraclejdk8
+  
+script:
+  - ./gradlew check
+  - ./gradlew selenium
+  
+deploy:
+  provider: heroku
+  api_key: '7a8cdcaf-b626-46ca-8474-221b4c99e93b'
+  app: floating-sea-50974
+  
 after_success:
   - bash <(curl -s https://codecov.io/bash)
