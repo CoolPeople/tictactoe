@@ -48,6 +48,9 @@ public class Game {
     }
 
     public void setWinCondition(int wC){
+        if(wC < minWinCondition){
+            throw new IllegalArgumentException("Win condition must be at least 3");
+	    }
         winCondition = wC;
     }
 
