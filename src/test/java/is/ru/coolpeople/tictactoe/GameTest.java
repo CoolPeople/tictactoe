@@ -27,6 +27,20 @@ public class GameTest {
     }
 
     @Test
+    public void testMakesCustomGame() {
+        Player p1 = new Player("Anna", "X");
+        Player p2 = new Player("Hafsteinn", "O");
+        Queue<Player> players = new ArrayBlockingQueue<Player>(2);
+        players.add(p1);
+        players.add(p2);
+        int boardWith = 3;
+        int boardHeight = 5;
+        Game g = new Game(players, boardWith, boardHeight);
+        assertTrue(g != null);
+        assertEquals((boardWith * boardHeight), g.getBoard().getGrid().length);
+    }
+
+    @Test
     public void testPlayers() {
         Player p1 = new Player("Anna", "X");
         Player p2 = new Player("Hafsteinn", "O");
@@ -76,7 +90,7 @@ public class GameTest {
         players.add(p1);
         players.add(p2);
 
-        //Test that if the top horizontal line is all the same symbol, game is over. 
+        //Test that if the top horizontal line is all the same symbol, game is over.
         Game g = new Game(players);
         g.doTurn(0); //Anna
         assertFalse(g.isGameOver());
