@@ -9,7 +9,7 @@
   font-style: normal;
 }
 
-h1{
+h1, h2{
   text-align: center;
 }
 
@@ -56,13 +56,12 @@ h1{
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(3, 100px);
   grid-gap: 10px;
-  background-color: #fff;
   color: #444;
 }
 
 
 #board > div {
-  background-color: #444;
+  background-color: lighten(black, 5%);
   color: #fff;
   border-radius: 5px;
   padding: 20px;
@@ -73,10 +72,34 @@ h1{
   margin-top:30px;
 }
 
+input{
+      background: #8c6026;
+    color: white;
+    padding: 5px;
+    border: 1px solid black;
+    &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+        color:    lightGray;
+    }
+    &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+       color:    lightGray;
+       opacity:  1;
+    }
+    &::-moz-placeholder { /* Mozilla Firefox 19+ */
+       color:    lightGray;
+       opacity:  1;
+    }
+    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+       color:    lightGray;
+    }
+    &::-ms-input-placeholder { /* Microsoft Edge */
+       color:    lightGray;
+    }
+  }
+
 .bSize input{
-padding:5px;
-margin-bottom:10px;
-margin-right:10px;
+  padding:5px;
+  margin-bottom:10px;
+  margin-right:10px;
 }
 
 .btn{
@@ -89,37 +112,43 @@ margin-right:10px;
   &.symbol{
     display:inline-block;
   }
+  background: darken(burlywood, 35%);
+  color:white;
 }
 
-body{
-  background: lightgray;
+.gameBoardSize{
+  margin-right:20px;
 }
 
 .symbolList.dropMenu{
   display:none;
   position: absolute;
-  background-color: #f9f9f9;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  left: 59px;
+  left: 79px;
   border: 1px darkgray;
   padding: 10px;
   grid-template-columns: repeat(3, auto);
   grid-gap: 10px;
-  background: darkgray;
+  border: 6px double black;
+  background: darken(darkgreen, 10%);
   &.show{
     display:grid;
+  }
+  &.player2{
+    left: 368px;
   }
   [class^="icon-"], [class*=" icon-"]{
     border-radius: 3px;
     border: 1px solid darkgray;
-    padding: 5px 10px;
     width:  -moz-fit-content;
     width:  fit-content;
-    background: lightgray;
+    background: black;
+    color:white;
     font-size:20px;
     display:inline-grid;
     cursor:pointer;
+    padding: 8px;
   }
 }
 
@@ -131,6 +160,9 @@ body{
 .error{
   display:none;
   background:red;
+  margin-top: 20px;
+  padding: 15px;
+  border: 3px double black;   
   &.show{
     display:block;
   }
@@ -146,9 +178,14 @@ body{
     clear:both;
     display:block;
   }
-  .gameTile:before{
-    font-size:60px;
+  .gameTile{
+    border: 3px double white;
+    box-sizing: border-box;
+    &:before{
+      font-size:54px;
+    }
   }
+
 }
 
 #menuWrapper{
@@ -162,10 +199,11 @@ body{
   margin: 0 auto;
   width:  -moz-fit-content;
   width:  fit-content;
-  border-color: gray;
+  border-color: black;
   border-style: double;
   border-width: 9px;
   padding: 20px;
+  color:white;
 }
 
 #board{
@@ -197,4 +235,57 @@ body{
 
 #menuButton, #playAgainButton{
   float:right;
+}
+
+
+.playerSettings{
+  display:grid;
+  grid-template-columns: repeat(2, auto);
+  margin-top:15px;
+  & > div{
+    border: 1px solid darkgray;
+    box-shadow: inset 1px 2px 15px -6px;
+    padding: 0 20px 15px;
+    &:first-of-type{
+      margin-right:15px;
+    }
+  }
+
+  .btn{
+    margin-top:5px;
+    padding: 10px;
+  }
+
+  & > .psTwo{
+    visibility: hidden;
+
+    &.show{
+      visibility: visible;
+    }
+  }
+}
+
+.btn.reset{
+  float:right;
+}
+
+.menuButtons{
+  margin-top:30px;
+}
+
+#tWidth{
+  margin-right: 10px;
+}
+
+.gameSettings{
+  display:grid;
+  grid-template-columns: repeat(2, auto);
+}
+
+body{
+  background:burlywood;
+}
+
+#menuWrapper, #gameWrapper{
+  background: desaturate(green, 50%);
 }
