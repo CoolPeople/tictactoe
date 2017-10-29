@@ -103,6 +103,7 @@ markdownToHtml.outputDir = new File("src/main/resources/templates")
 
 tasks["compileJava"].dependsOn("lesscss")
 
+//delivery test
 
 jacocoTestReport {
     reports {
