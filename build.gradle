@@ -73,11 +73,11 @@ task selenium(type: Test, dependsOn: installDist) {
     classpath = sourceSets.selenium.runtimeClasspath
 
     doFirst {
-        'build/install/tictactoe/bin/tictactoe'.execute()
+        './gradlew run -x test'.execute()
     }
 
     doLast {
-        'gradle stop'.execute()
+        './gradlew stop'.execute()
     }
 }
 

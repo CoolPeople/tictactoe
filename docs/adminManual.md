@@ -35,11 +35,11 @@ gradlew bootRun
 # Run TicTacToe on the web
 ### Requirements
 - Internet browser, such as: 
--- Google Chrome
--- Opera
--- Firefox
--- Safari
--- IE/Edge 
--- etc.
+  - Google Chrome
+  - Opera
+  - Firefox
+  - Safari
+  - IE/Edge 
+  - etc.
 ### Running
 - Open a browser of your choice and go to: https://floating-sea-50974.herokuapp.com/
