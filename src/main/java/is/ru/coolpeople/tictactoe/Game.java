@@ -14,6 +14,8 @@ public class Game {
     private final int minCustomGameWinCondition = 4;
     private int winCondition = minWinCondition;
 
+    private int lastValidMove;
+
     public Game(Queue<Player> playersQueue) {
         board = new Board();
         players = playersQueue;
@@ -32,11 +34,16 @@ public class Game {
 
         board.placeSymbol(players.peek().getSymbol(), index);
         players.add(players.poll()); //changes the current player
+        lastValidMove = index;
         return isGameOver() ? TurnResult.gameOver : TurnResult.valid;
     }
 
     public Board getBoard() {
         return board;
+    }
+
+    public int getLastValidMove() {
+        return lastValidMove;
     }
 
     public String currentPlayerName() {
