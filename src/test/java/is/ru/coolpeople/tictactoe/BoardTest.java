@@ -79,7 +79,28 @@ public class BoardTest {
 
 		//Grid should be initialized and have 25 tiles
 		assertFalse(board.grid == null);
-		assertTrue(board.grid.length == 25);
+		assertEquals(25, board.grid.length);
+	}
+
+    @Test
+	public void testInvalidBoardSize() {
+		//Set up new board with invalid size
+		boolean caughtExceptionOne = false;
+		boolean caughtExceptionTwo = false;
+		try {
+			Board board = new Board(1,2);
+		} catch (IllegalArgumentException e) {
+			caughtExceptionOne = true;
+		}
+
+		try {
+			Board board = new Board(3,2);
+		} catch (IllegalArgumentException e) {
+			caughtExceptionTwo = true;
+		}
+
+		//should catch exception
+		assertTrue(caughtExceptionOne && caughtExceptionTwo);
 	}
 
 }
