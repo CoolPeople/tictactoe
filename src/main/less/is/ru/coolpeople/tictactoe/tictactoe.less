@@ -94,6 +94,10 @@ input{
     &::-ms-input-placeholder { /* Microsoft Edge */
        color:    lightGray;
     }
+    &[type=number]{
+      width:70px;
+      box-sizing: border-box;
+    }
   }
 
 .bSize input{
@@ -136,7 +140,7 @@ input{
     display:grid;
   }
   &.player2{
-    left: 368px;
+    left: 385px;
   }
   [class^="icon-"], [class*=" icon-"]{
     border-radius: 3px;
@@ -190,6 +194,7 @@ input{
 
 #menuWrapper{
   display:none;
+  width: 600px;
   &.show{
     display:block;
   }
