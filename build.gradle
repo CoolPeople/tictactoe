@@ -73,7 +73,7 @@ task selenium(type: Test, dependsOn: installDist) {
     classpath = sourceSets.selenium.runtimeClasspath
 
     doFirst {
-        'gradle run -x test'.execute()
+        'gradle run -x test --build-cache'.execute()
     }
 
     doLast {
