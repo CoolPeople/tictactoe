@@ -16,6 +16,11 @@ public class Game {
         players = playersQueue;
     }
 
+    public Game(Queue<Player> playersQueue, int bW, int bH) {
+        board = new Board(bW, bH);
+        players = playersQueue;
+    }
+
     // Returns false if the cell has already been marked, otherwise, markes the cell
     public boolean doTurn(int index) {
         if (board.getSymbolAtIndex(index) != null) {
