@@ -16,13 +16,5 @@ public class TestTicTacToe extends SeleniumTestWrapper {
   @Test
   public void testSimpleAdd() throws Exception {
     driver.get(baseUrl);
-    /* Remove Thread.sleep... */
-    Thread.sleep(2000);
-    //WebElement input = driver.findElement(By.id("number"));
-    //input.sendKeys("1");
-    assertEquals(0,0);
-    /* Remove Thread.sleep... */
-    Thread.sleep(2000);
-    /* ... finish test! */
   }
 }
