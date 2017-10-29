@@ -119,4 +119,26 @@ public class BoardTest {
 		assertTrue(caughtExceptionOne && caughtExceptionTwo);
 	}
 
+
+    @Test
+	public void testIfBoardIsFull() {
+
+		Board b = new Board(3, 3);
+		String[] g = b.getGrid();
+
+        b.getGrid()[0] = "test";
+        b.getGrid()[1] = "test";
+        b.getGrid()[2] = "test";
+        assertFalse(b.isFull());
+        b.getGrid()[3] = "test";
+        b.getGrid()[4] = "test";
+        b.getGrid()[5] = "test";
+        assertFalse(b.isFull());
+        b.getGrid()[6] = "test";
+        b.getGrid()[7] = "test";
+        b.getGrid()[8] = "test";
+        assertTrue(b.isFull());
+
+	}
+
 }
