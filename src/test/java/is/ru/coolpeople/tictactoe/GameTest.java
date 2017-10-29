@@ -51,6 +51,17 @@ public class GameTest {
     }
 
     @Test
+    public void testCustomWinCondition() {
+        Player p1 = new Player("Anna", "X");
+        Queue<Player> players = new ArrayBlockingQueue<Player>(2);
+        players.add(p1);
+        Game g = new Game(players);
+        assertTrue(g != null);
+        g.setWinCondition(5);
+        assertEquals(5, g.getWinCondition());
+    }
+
+    @Test
     public void testPlayers() {
         Player p1 = new Player("Anna", "X");
         Player p2 = new Player("Hafsteinn", "O");
