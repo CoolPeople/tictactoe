@@ -264,5 +264,28 @@ public class GameTest {
         assertTrue(g8.isGameOver());
     }
 
+    public void testLastValidMove() {
+        Player p1 = new Player("Anna", "X");
+        Player p2 = new Player("Hafsteinn", "O");
+        Queue<Player> players = new ArrayBlockingQueue<Player>(2);
+        players.add(p1);
+        players.add(p2);
+        //Test winning with cells on 0 - 1 - 2, test that do turn returns gameOver enum
+        Game g8 = new Game(players);
+        Game g = new Game(players);
+        g.doTurn(0); //Anna
+        assertEquals(0, g.getLastValidMove());
+        g.doTurn(4); //Hafsteinn
+        assertEquals(4, g.getLastValidMove());
+        g.doTurn(0); //Anna
+        assertEquals(4, g.getLastValidMove());
+        g.doTurn(1); //Anna
+        assertEquals(1, g.getLastValidMove());
+        g.doTurn(5); //Hafsteinn
+        assertEquals(5, g.getLastValidMove());
+        g.doTurn(2); //Anna
+        assertEquals(2, g.getLastValidMove());
+    }
+
 
 }
