@@ -111,15 +111,15 @@ public class GameTest {
         Game g = new Game(players);
 
         assertEquals("Anna", g.currentPlayerName());
-        assertEquals(true, g.doTurn(0)); //Anna
+        assertTrue(g.doTurn(0)); //Anna
         assertEquals("Hafsteinn", g.currentPlayerName());
-        assertEquals(true, g.doTurn(1)); //Hafsteinn
+        assertTrue(g.doTurn(1)); //Hafsteinn
         assertEquals("Anna", g.currentPlayerName());
-        assertEquals(false, g.doTurn(1)); //Anna
+        assertFalse(g.doTurn(1)); //Anna
         assertEquals("Anna", g.currentPlayerName());
-        assertEquals(true, g.doTurn(2)); //Anna
+        assertTrue(g.doTurn(2)); //Anna
         assertEquals("Hafsteinn", g.currentPlayerName());
-        assertEquals(false, g.doTurn(1)); //Hafsteinn
+        assertFalse(g.doTurn(1)); //Hafsteinn
 
         Board b = g.getBoard();
         String[] grid = b.getGrid();
