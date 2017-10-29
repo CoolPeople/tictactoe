@@ -5,12 +5,18 @@ package is.ru.coolpeople.tictactoe;
  */
 public class Board {
 	String[] grid;
+	final int minWidth = 3;
+	final int minHeight = 3;
+	final int minSize = minWidth*minHeight;
 
 	Board() {
-		grid = new String[9];
+		grid = new String[minSize];
 	}
 
 	Board(int w, int h) {
+	    if(w < minWidth || h < minHeight){
+            throw new IllegalArgumentException("Invalid board size, height and width must be 3+");
+	    }
 		grid = new String[w*h];
 	}
 
@@ -26,7 +32,7 @@ public class Board {
 	}
 
 	String getSymbolAtIndex(int index) {
-		if (index >= 9 || index < 0) {
+		if (index >= grid.length || index < 0) {
 			throw new IllegalArgumentException("Index not between 0 and 9");
 		}
 		return grid[index];
