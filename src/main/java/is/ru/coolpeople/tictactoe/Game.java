@@ -10,6 +10,9 @@ import java.util.Queue;
 public class Game {
     private Board board;
     private Queue<Player> players; // The current player is always first in the Queue
+    private final int minWinCondition = 3;
+    private final int minCustomGameWinCondition = 4;
+    private int winCondition = minWinCondition;
 
     public Game(Queue<Player> playersQueue) {
         board = new Board();
@@ -38,6 +41,14 @@ public class Game {
 
     public String currentPlayerName() {
         return (players.peek()).getName();
+    }
+
+    public int getWinCondition(){
+        return winCondition;
+    }
+
+    public void setWinCondition(int wC){
+        winCondition = wC;
     }
 
     public boolean isGameOver() {
