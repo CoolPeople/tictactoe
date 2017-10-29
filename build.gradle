@@ -54,14 +54,16 @@ dependencies {
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	compile("org.springframework.boot:spring-boot-devtools")
-
 	compile 'com.google.guava:guava:22.0'
-    //compile "com.sparkjava:spark-core:2.6.0"
 
     testCompile 'org.testng:testng:6.10'
 
-    seleniumCompile 'junit:junit:4.12'
-    seleniumCompile 'org.seleniumhq.selenium:selenium-java:3.6.0'
+	seleniumCompile group: 'commons-logging', name: 'commons-logging', version: '1.1.1'
+
+	seleniumCompile 'junit:junit:4.12'
+	seleniumCompile "org.seleniumhq.selenium:selenium-chrome-driver"
+	seleniumCompile 'org.seleniumhq.selenium:selenium-java'
+
 }
 
 test.useTestNG()
