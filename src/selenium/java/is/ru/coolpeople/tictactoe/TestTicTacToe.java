@@ -10,7 +10,7 @@ public class TestTicTacToe extends SeleniumTestWrapper {
   @Test
   public void testTitleMatches() {
     driver.get(baseUrl);
-    assertEquals("CalcWeb", driver.getTitle());
+    assertEquals("Tic Tac Toe", driver.getTitle());
   }
 
   @Test
