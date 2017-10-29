@@ -267,4 +267,25 @@ $(document).ready(function () {
         $(".btn.startGame").trigger("click");
     });
 
+
+    $(".boardSize").on("change", function(){
+        var w = parseInt($("#tWidth").val());
+        var h = parseInt($("#tHeight").val());
+        var max = Math.min(w, h);
+        if(w < 4 || h < 4){
+            $("#winRule").attr("min", 3).attr("max", 3).val(3);
+        }
+        else{
+            $("#winRule").attr("min", 4).trigger("change");
+            $("#winRule").attr("max", max);
+
+            if(parseInt($("#winRule").val()) > max){
+                $("#winRule").val(max);
+            }
+            else if(parseInt($("#winRule").val()) < 4){
+                $("#winRule").val(4);
+            }
+        }
+    })
+
 });
