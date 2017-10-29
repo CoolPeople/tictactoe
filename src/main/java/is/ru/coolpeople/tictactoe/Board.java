@@ -9,6 +9,9 @@ public class Board {
 	final int minHeight = 3;
 	final int minSize = minWidth*minHeight;
 
+	private int width = minWidth;
+	private int height = minHeight;
+
 	Board() {
 		grid = new String[minSize];
 	}
@@ -17,8 +20,19 @@ public class Board {
 	    if(w < minWidth || h < minHeight){
             throw new IllegalArgumentException("Invalid board size, height and width must be 3+");
 	    }
+	    width = w;
+	    height = h;
+
 		grid = new String[w*h];
 	}
+
+    public int getWidth(){
+        return width;
+    }
+
+    public int getHeight(){
+        return height;
+    }
 
 	String[] getGrid() {
 		return grid;
